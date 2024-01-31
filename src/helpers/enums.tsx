@@ -1,0 +1,4 @@
+export enum ACTIONS {
+  SET_FORECAST,
+  SET_ONLINE,
+}

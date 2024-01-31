@@ -1,0 +1,101 @@
+#wave {
+  margin-left: 15px;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  width: max-content;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: fit-content;
+  max-width: 250px;
+  max-height: fit-content;
+  background: #F5F5F5;
+}
+
+#wave .srfriendzone {
+  padding-right: 5px;
+}
+
+#wave .srsend {
+  float: right;
+  cursor: pointer;
+}
+
+#wave .dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  margin-right: 3px;
+  background: grey;
+  animation: wave 1s linear infinite;
+  animation-delay: -0.9s;
+}
+
+#wave .dot.two {
+  animation-delay: -0.7s;
+}
+
+#wave .dot.three {
+  margin-right: 10px;
+}
+
+#wave .dot:nth-child(3) {
+  animation-delay: -0.6s;
+}
+
+#wave .srtextarea {
+  padding-left: 10px;
+}
+
+@keyframes wave {
+
+  0%,
+  60%,
+  100% {
+    transform: initial;
+  }
+
+  30% {
+    transform: translateY(-15px);
+  }
+}
+
+.message-block {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  @media screen and (max-width: 600px) {
+    justify-content: left;
+    // padding-right: 10%;
+  }
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mt100 {
+  margin-top: auto;
+}
+
+.custom-icon {
+  width: 50px;
+  height: 50px;
+  background-image: url('../../assets/icons/1.jpg');
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 10px;
+}
+
+.message-time {
+  color: #DCDCDC;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

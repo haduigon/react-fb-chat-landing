@@ -1,0 +1,45 @@
+.header {
+  top: 0;
+  position: fixed;
+  height: 70px;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 1px 0px 2px 0px lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.red-circle {
+  width: 10px;
+  height: 10px;
+  background-color: lightgreen;
+  border-radius: 50%;
+  color: var(--Gray-White, #fff);
+  text-align: center;
+  font-family: Mont, serif;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.red-circle-box {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 35px;
+  left: 35px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phantom {
+  display: none;
+}

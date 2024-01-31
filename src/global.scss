@@ -1,0 +1,59 @@
+@font-face {
+  font-family: "Mont";
+  src: local("Mont"), url("./assets/fonts/Mont-Regular.otf") format("opentype");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Mont, serif;
+}
+
+#root {
+  width: 100%;
+}
+
+.font-header {
+  font-family: Mont, serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.32px;
+  color: #313237;
+  margin: 0;
+  padding-bottom: 8px;
+}
+
+.font-models-amount {
+  font-family: Mont, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 21px;
+  color: #89939a;
+  padding-bottom: 40px;
+}
+
+.custom-font {
+  font-family: Mont, serif;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.center-div {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-icon {
+  width: 50px;
+  height: 50px;
+  background-image: url('../src/assets/icons/1.jpg');
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 10px;
+}
