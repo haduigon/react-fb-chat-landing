@@ -5,6 +5,7 @@ import { useState } from 'react';
 // import { GiSwordwoman, GiSwordman } from "react-icons/gi";
 import './CustomCheckBoxes.scss';
 import { useSearchParams } from 'react-router-dom';
+import { CheckBoxContent } from '../../helpers/types';
 
 type Props = {
     onChange: (event: string) => void,
@@ -13,6 +14,11 @@ type Props = {
     text3?: string,
     icon1?: React.ReactNode,
     icon2?: React.ReactNode,
+}
+
+type CheckBoxProps = {
+    choices: Array<CheckBoxContent>,
+    onChange: (event: string) => void,
 }
 
 export const CheckboxDouble: React.FC<Props> = ({ onChange, text, icon1, icon2, text2, text3 }) => {

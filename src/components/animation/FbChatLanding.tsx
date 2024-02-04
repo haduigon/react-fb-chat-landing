@@ -1,14 +1,17 @@
 import { FbAll, FbAnimation, FbMessage } from './FbAnimation';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { NameInput } from "../input/NameInput";
-import { useSearchParams, Navigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { CheckboxDouble, CheckboxCelebs } from '../checkbox/CustomCheckBoxes';
 import { SelectDateOfBirth } from '../select/SelectDateOfBirth';
 import { SingleValue } from "react-select";
 import { GiSwordwoman, GiSwordman } from "react-icons/gi";
 import { Stripe } from '../payment/Stripe';
 import { getHoroSign, client } from '../../helpers/utils';
-import { intro1, intro2, intro3 } from '../../helpers/diallogText';
+import { celebPrompt, intro, firstQuestion, secondQuestion } from '../../helpers/diallogText';
+import { City }  from 'country-state-city';
+import { CityInput } from '../input/CityInput';
+import debounce from 'lodash.debounce';
 
 type SelectOption = {
   value: string | number | null,
@@ -22,28 +25,24 @@ export const FbChatLanding: React.FC = () => {
   const day: string = searchParams.get('day') || '';
   const month: string = searchParams.get('month') || '';
   const year: string = searchParams.get('year') || '';
+  const city2: string = searchParams.get('city') || '';
   const [step2, setStep2] = useState(false);
-  const [radioState, setRadioState] = useState('');
+  const [radioState, _setRadioState] = useState('');
   const [isLoading, setIsLoadong] = useState(false);
   const [celebs, setCelebs] = useState<string[]>([]);
   const [choosenCeleb, setChoosenCeleb] = useState('0');
   const [marriage, setMarriage] = useState(false);
-  const [time1, setTime1] = useState(false);
-  const [time2, setTime2] = useState(false);
-  // const [time3, setTime3] = useState(false);
-
-
-  const isBithdateSet = (day.length > 0) && (month.length > 0) && (year.length > 0);
-
+  const [time, setTime] = useState(false);
   const [horoSign, setHoroSign] = useState('');
+  const isBithdateSet = (day.length > 0) && (month.length > 0) && (year.length > 0);
 
   useEffect(() => {
     if (isBithdateSet) {
       setIsLoadong(true);
       client.post('/chat', {
-        prompt: `write me three female celebreties who were born exectly ${day} ${month} and have the children after 1991 year`
+        prompt: celebPrompt(horoSign)
       }).then((response: any) => {
-        console.log(response.data.message.split('\n\n'), 'resp data');
+        console.log(response.data, 'resp data');
         setCelebs(response.data.message.split('\n\n'));
       }).finally(() => {
         setIsLoadong(false);
@@ -54,33 +53,23 @@ export const FbChatLanding: React.FC = () => {
     }
   }, [isBithdateSet]);
 
-  // console.log(horoSign);
-  
-
   useEffect(() => {
     params.delete('day');
     params.delete('month');
     params.delete('year');
     params.delete('name');
+    params.delete('city');
     setSearchParams(params);
     setTimeout(() => {
-      setTime1(true);
+      setTime(true);
     }, 8000)
-    setTimeout(() => {
-      setTime2(true);
-    }, 16000)
-    // setTimeout(() => {
-    //   setShowMessage(true);
-    // }, 4500);
   }, [])
 
-  console.log(horoSign, 'horoSIgn');
-
-  function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
-    if (!event.target.value) {
-      params.delete('name');
+  function handleInput(value: string, fieldName: string) {
+    if (!value) {
+      params.delete(fieldName);
     } else {
-      params.set('name', event.target.value);
+      params.set(fieldName, value);
     }
 
     setSearchParams(params);
@@ -112,17 +101,13 @@ export const FbChatLanding: React.FC = () => {
 
   return (
     <div>
-      <FbAll text={intro1} />
+      <FbAll text={intro} />
 
-      {time1 &&
-        <FbAll text={intro2} />
-      }
-
-      {time2 &&
+      {time &&
         <FbAll
-          text={intro3}
+          text={firstQuestion}
           child={<NameInput
-            onChange={handleInput}
+            onChange={(event) => handleInput(event.target.value, 'name')}
             onKeyDown={handleKeyDown}
             inputErrorText='Input your name and'
             field='name'
@@ -131,9 +116,32 @@ export const FbChatLanding: React.FC = () => {
         />
       }
 
-      {step2 &&
+      {/* {inputName.length > 1 && <Navigate to="/download"/>} */}
+      {/* {city2.length > 0 && (
+        <div>
+          {foundCity.map(city => {
+            return (
+              <div>{city.name}</div>
+            )
+          })}
+        </div>
+      )} */}
+      {step2 && 
         <FbAll
-          text={`${inputName}, lorem ipsum dolor sit amet consectetur adipisicing elit. Officia reiciendis,`}
+        text={secondQuestion}
+        child={<CityInput
+          onChange={handleInput}
+          onKeyDown={handleKeyDown}
+          inputErrorText='Input your city of birth and'
+          field='city'
+          showEnter={step2}
+        />}
+      />
+      }
+
+      {/* {step2 &&
+        <FbAll
+          text={`${inputName}, ${secondQuestion}`}
           child={
             <CheckboxDouble
               onChange={setRadioState}
@@ -144,7 +152,7 @@ export const FbChatLanding: React.FC = () => {
               icon2={<GiSwordman className='size-25' />}
             />
           }
-        />}
+        />} */}
 
       {radioState.length > 0 && (
         <FbAll
@@ -185,7 +193,6 @@ export const FbChatLanding: React.FC = () => {
       )}
 
       {marriage && (
-        // <Navigate to="/download" />
         <FbAll
           text='Buy forecast and unveil the future'
           child={

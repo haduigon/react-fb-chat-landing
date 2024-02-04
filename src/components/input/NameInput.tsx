@@ -27,7 +27,7 @@ export const NameInput: React.FC<Props> = ({
           value={inputValue}
           className="input is-link custom-font input-box"
           type="text"
-          placeholder="Jhon Smith"
+          placeholder="Lilu Dallas"
           onChange={(event) => onChange(event)}
           autoFocus
           onKeyDown={(event) => onKeyDown(event)}

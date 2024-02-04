@@ -19,7 +19,7 @@ export const Header = () => {
       <div style={{ marginLeft: 10 }}>
         <div className="custom-icon" style={{ position: 'relative' }}>
           <div className={classNames("red-circle-box", {
-              "phantom": !state.isOnline
+              "phantom": ! state.isOnline
           })}>
             <div className="red-circle" />
           </div>
