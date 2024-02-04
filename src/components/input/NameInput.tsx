@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import './NameInput.scss';
 import { useSearchParams } from 'react-router-dom';
 
@@ -18,6 +19,11 @@ export const NameInput: React.FC<Props> = ({
 }) => {
   const [searchParams] = useSearchParams();
   const inputValue: string = searchParams.get(field) || '';
+  const myRef = useRef<null | HTMLInputElement>(null);
+
+  if (myRef.current) {
+    myRef.current.focus();
+  }
 
   return (
 
@@ -29,7 +35,7 @@ export const NameInput: React.FC<Props> = ({
           type="text"
           placeholder="Lilu Dallas"
           onChange={(event) => onChange(event)}
-          autoFocus
+          ref={myRef}
           onKeyDown={(event) => onKeyDown(event)}
         />
       </div>

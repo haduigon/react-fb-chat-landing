@@ -133,7 +133,6 @@ export const FbChatLanding: React.FC = () => {
           onChange={handleInput}
           onKeyDown={handleKeyDown}
           inputErrorText='Input your city of birth and'
-          field='city'
           showEnter={step2}
         />}
       />

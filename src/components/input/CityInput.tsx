@@ -1,7 +1,7 @@
 import './NameInput.scss';
 import { useSearchParams } from 'react-router-dom';
 import { City } from 'country-state-city';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useEffect } from 'react';
 
@@ -9,7 +9,7 @@ type Props = {
   onChange: (event: string, field: string) => void,
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void,
   inputErrorText: string,
-  field: string,
+  field?: string,
   showEnter: boolean,
 }
 
@@ -17,7 +17,6 @@ export const CityInput: React.FC<Props> = ({
   onChange,
   onKeyDown,
   inputErrorText,
-  field,
   showEnter,
 }) => {
   const [searchParams] = useSearchParams();
@@ -26,6 +25,7 @@ export const CityInput: React.FC<Props> = ({
   const [hints, setHints] = useState<Array<any>>([]);
   const city2: string = searchParams.get('city') || '';
   const [showHint, setShowHint] = useState(true);
+  const myRef = useRef<null | HTMLInputElement>(null);
 
   useEffect(() => {
     let foundCity: Array<any> = [];
@@ -36,8 +36,11 @@ export const CityInput: React.FC<Props> = ({
 
     setHints(foundCity);
   }, [city2])
- 
 
+  if (myRef.current) {
+    myRef.current.focus();
+  }
+ 
   console.log(hints, 'founded');
   function handleInput(event: string) {
     setSearch(event);
@@ -76,7 +79,7 @@ export const CityInput: React.FC<Props> = ({
           type="text"
           placeholder="London"
           onChange={(event) => handleInput(event.target.value)}
-          autoFocus
+          ref={myRef}
           onKeyDown={(event) => onKeyDown(event)}
         />
       </div>
