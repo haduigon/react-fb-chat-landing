@@ -11,7 +11,7 @@ import { getHoroSign, client } from '../../helpers/utils';
 import { celebPrompt, intro, firstQuestion, secondQuestion } from '../../helpers/diallogText';
 import { City }  from 'country-state-city';
 import { CityInput } from '../input/CityInput';
-import debounce from 'lodash.debounce';
+// import debounce from 'lodash.debounce';
 
 type SelectOption = {
   value: string | number | null,
@@ -117,15 +117,7 @@ export const FbChatLanding: React.FC = () => {
       }
 
       {/* {inputName.length > 1 && <Navigate to="/download"/>} */}
-      {/* {city2.length > 0 && (
-        <div>
-          {foundCity.map(city => {
-            return (
-              <div>{city.name}</div>
-            )
-          })}
-        </div>
-      )} */}
+
       {step2 && 
         <FbAll
         text={secondQuestion}

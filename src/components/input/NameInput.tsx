@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import './NameInput.scss';
 import { useSearchParams } from 'react-router-dom';
 
@@ -21,9 +21,13 @@ export const NameInput: React.FC<Props> = ({
   const inputValue: string = searchParams.get(field) || '';
   const myRef = useRef<null | HTMLInputElement>(null);
 
-  if (myRef.current) {
-    myRef.current.focus();
-  }
+
+
+  useEffect(() => {
+    if (myRef.current) {
+      myRef.current.focus();
+    }
+  }, [myRef])
 
   return (
 

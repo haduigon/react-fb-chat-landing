@@ -37,11 +37,12 @@ export const CityInput: React.FC<Props> = ({
     setHints(foundCity);
   }, [city2])
 
-  if (myRef.current) {
-    myRef.current.focus();
-  }
+  useEffect(() => {
+    if (myRef.current) {
+      myRef.current.focus();
+    }
+  }, [myRef])
  
-  console.log(hints, 'founded');
   function handleInput(event: string) {
     setSearch(event);
     setInputValue(event);
