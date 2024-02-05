@@ -1,9 +1,10 @@
-import './NameInput.scss';
+import './CommonInputStyles.scss';
 import { useSearchParams } from 'react-router-dom';
 import { City } from 'country-state-city';
 import { useCallback, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 type Props = {
   onChange: (event: string, field: string) => void,
@@ -63,8 +64,10 @@ export const CityInput: React.FC<Props> = ({
         {((inputValue.length > 0) && (showHint)) &&
           <div>
             {hints.map(city => {
+              const key = uuidv4();
               return (
                 <div
+                  key={key}
                   style={{cursor: 'pointer'}}
                   onClick={() => handleClick(city.name)}
                 >

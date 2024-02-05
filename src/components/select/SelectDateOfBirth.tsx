@@ -12,31 +12,29 @@ type Props = {
 
 export const SelectDateOfBirth: React.FC<Props> = ({ onChange }) => {
 
+  const arrayDay: SelectOption[] = days.map((day) => ({ value: day, label: day }));
 
-  const arrayDay: SelectOption[] = days.map((day) => ({ value: day, label: day }))
+  const arrayMonth: SelectOption[] = months.map((month) => ({ value: month, label: month }));
 
-
-  const arrayMonth: SelectOption[] = months.map((month) => ({ value: month, label: month }))
-
-
-  const arrayYear: SelectOption[] = years.map((year) => ({ value: year, label: year }))
+  const arrayYear: SelectOption[] = years.map((year) => ({ value: year, label: year }));
 
   const selectOptionStyles = {
     cursor: 'pointer',
     display: 'flex',
     justifyContent: 'center'
-  }
+  };
 
   return (
     <div className='custom-select'>
 
-      <div className="select mt-2 is-normal pr-1 custom-font" style={{ width: '120px' }}>
+      <div className="mt-2 is-normal pr-1 custom-font" style={{ width: '120px' }}>
         <Select
           options={arrayDay}
           styles={{
             control: (baseStyle) => ({
               ...baseStyle,
               cursor: 'pointer',
+              width: 150,
             }),
             option: () => (selectOptionStyles)
           }}
@@ -46,12 +44,13 @@ export const SelectDateOfBirth: React.FC<Props> = ({ onChange }) => {
           isSearchable={false}
         />
       </div>
-      <div className="select mt-2 is-normal pr-1 custom-font" style={{ width: '120px' }}>
+      <div className="mt-2 is-normal pr-1 custom-font" style={{ width: '120px' }}>
         <Select
           styles={{
             control: (baseStyle) => ({
               ...baseStyle,
               cursor: 'pointer',
+              width: 150,
             }),
             option: () => (selectOptionStyles)
           }}
@@ -62,13 +61,14 @@ export const SelectDateOfBirth: React.FC<Props> = ({ onChange }) => {
           isSearchable={false}
         />
       </div>
-      <div className="select mt-2 is-normal pr-1 custom-font" style={{ width: '120px' }}>
+      <div className="mt-2 is-normal pr-1 custom-font" style={{ width: '120px' }}>
         <Select
           options={arrayYear}
           styles={{
             control: (baseStyle) => ({
               ...baseStyle,
               cursor: 'pointer',
+              width: 150,
             }),
             option: () => (selectOptionStyles)
           }}

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import './NameInput.scss';
 import { useSearchParams } from 'react-router-dom';
+import './CommonInputStyles.scss';
 
 type Props = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
