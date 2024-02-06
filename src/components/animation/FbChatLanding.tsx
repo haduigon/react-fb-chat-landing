@@ -5,11 +5,13 @@ import { useSearchParams } from 'react-router-dom';
 import { CheckboxDouble, CheckboxCelebs } from '../checkbox/CustomCheckBoxes';
 import { SelectDateOfBirth } from '../select/SelectDateOfBirth';
 import { SingleValue } from "react-select";
-import { GiSwordwoman, GiSwordman } from "react-icons/gi";
-import { Stripe } from '../payment/Stripe';
+// import { GiSwordwoman, GiSwordman } from "react-icons/gi";
+// import { Stripe } from '../payment/Stripe';
 import { getHoroSign, client } from '../../helpers/utils';
-import { intro, firstQuestion, secondQuestion, thirdQuestion } from '../../helpers/diallogText';
+import { intro, firstQuestion, secondQuestion, thirdQuestion, fourthQuestion } from '../../helpers/diallogText';
 import { CityInput } from '../input/CityInput';
+import { BiMaleFemale } from "react-icons/bi";
+import { FaFemale } from "react-icons/fa";
 
 type SelectOption = {
   value: string | number | null,
@@ -26,9 +28,11 @@ export const FbChatLanding: React.FC = () => {
   const city2: string = searchParams.get('city') || '';
   const [question2, setQuestion2] = useState(false);
   const [question3, setQuestion3] = useState(false);
+  const [question4, setQuestion4] = useState(false);
+  const [question5, setQuestion5] = useState(false);
   const [radioState, _setRadioState] = useState('');
   const [isLoading, setIsLoadong] = useState(false);
-  const [celebs, setCelebs] = useState<string[]>([]);
+  // const [celebs, setCelebs] = useState<string[]>([]);
   // const [choosenCeleb, setChoosenCeleb] = useState('0');
   const [marriage, setMarriage] = useState(false);
   const [question1, setQuestion1] = useState(false);
@@ -75,11 +79,22 @@ export const FbChatLanding: React.FC = () => {
     setSearchParams(params);
   }
 
-  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-
-    if (event.key === 'Enter' && inputName.replace(/\s/g, '').length > 0) {
-      setQuestion2(true);
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>, filedName?: string) {
+    switch (filedName) {
+      case 'name':
+        if (event.key === 'Enter' && inputName.replace(/\s/g, '').length > 0) {
+          setQuestion2(true);
+        }
+        break;
+      case 'city':
+        if (event.key === 'Enter' && inputName.replace(/\s/g, '').length > 0) {
+          setQuestion4(true);
+        }
     }
+  }
+
+  function handleClick(filedName?: string) {
+    setQuestion4(true);
   }
 
   function handleSelectParam(value: SingleValue<SelectOption>, param: string) {
@@ -93,14 +108,27 @@ export const FbChatLanding: React.FC = () => {
     setSearchParams(params);
   }
 
-  if (celebs.length) {
-    const defice = celebs[1].indexOf('-');
-    const celebName = celebs[1].slice(3, defice);
+  function handleChange(hasPartner?: string) {
+    setQuestion5(true)
   }
+  console.log(question4, 'question4');
 
   return (
     <div>
+      {/* <BiMaleFemale size={4}/> */}
       <FbAll text={intro} />
+      <FbAll
+          text={fourthQuestion[0]}
+          child={
+            <CheckboxDouble
+              onChange={handleChange}
+              text2={fourthQuestion[1]}
+              text3={fourthQuestion[2]}
+              icon1={<BiMaleFemale size={30} />}
+              icon2={<FaFemale size={30} />}
+            />
+          }
+        />
 
       {question1 &&
         <FbAll
@@ -142,12 +170,25 @@ export const FbChatLanding: React.FC = () => {
           child={<CityInput
             onChange={handleInput}
             onKeyDown={handleKeyDown}
-            inputErrorText='Input your city of birth and'
-            showEnter={question3}
+            onClick={handleClick}
+            inputErrorText='Input your city and'
+            showEnter={question4}
           />}
         />
       }
 
+
+      {question4 &&
+        <FbAll
+          text={fourthQuestion[0]}
+          child={
+            <CheckboxDouble
+              onChange={handleChange}
+              text2={fourthQuestion[1]}
+              text3={fourthQuestion[2]}
+            />
+          }
+        />}
 
       {isLoading && (
         <FbAnimation />

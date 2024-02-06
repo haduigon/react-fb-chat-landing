@@ -7,4 +7,22 @@
 
 .input-box {
 border-radius: 10px;
+position: relative;
+}
+
+.drop {
+  position: absolute;
+  top: 40px;
+  height: fit-content;
+  max-height: 200px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid lightgray;
+  overflow: scroll;
+  background-color: #fff;
+  border-radius: 5%;
+}
+
+.drop-text {
+  margin-left: 10px;
 }

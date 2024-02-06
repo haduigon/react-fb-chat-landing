@@ -4,7 +4,7 @@ import './CommonInputStyles.scss';
 
 type Props = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void,
+  onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>, filedName: string) => void,
   inputErrorText: string,
   field: string,
   showEnter: boolean,
@@ -40,7 +40,7 @@ export const NameInput: React.FC<Props> = ({
           placeholder="Lilu Dallas"
           onChange={(event) => onChange(event)}
           ref={myRef}
-          onKeyDown={(event) => onKeyDown(event)}
+          onKeyDown={(event) => onKeyDown(event, 'name')}
         />
       </div>
       <div className="center-div">

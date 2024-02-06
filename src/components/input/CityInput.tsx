@@ -8,7 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 type Props = {
   onChange: (event: string, field: string) => void,
-  onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void,
+  onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>, filedName?: string) => void,
+  onClick: (filedName?: string) => void,
   inputErrorText: string,
   field?: string,
   showEnter: boolean,
@@ -17,6 +18,7 @@ type Props = {
 export const CityInput: React.FC<Props> = ({
   onChange,
   onKeyDown,
+  onClick,
   inputErrorText,
   showEnter,
 }) => {
@@ -27,6 +29,7 @@ export const CityInput: React.FC<Props> = ({
   const city2: string = searchParams.get('city') || '';
   const [showHint, setShowHint] = useState(true);
   const myRef = useRef<null | HTMLInputElement>(null);
+  const hintsRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
     let foundCity: Array<any> = [];
@@ -43,6 +46,14 @@ export const CityInput: React.FC<Props> = ({
       myRef.current.focus();
     }
   }, [myRef])
+
+  useEffect(() => {
+    if (hintsRef.current) {
+      setTimeout(() => {
+        hintsRef.current?.scrollIntoView({ behavior: 'smooth' })
+      }, 1000)
+    }
+  }, [])
  
   function handleInput(event: string) {
     setSearch(event);
@@ -50,9 +61,15 @@ export const CityInput: React.FC<Props> = ({
     setShowHint(true);
   }
 
-  function handleClick(value: string) {
+  function handleClick(value: string, event: React.MouseEvent) {
     onChange(value, 'city');
     setInputValue(value);
+    setShowHint(false);
+    onClick('city');
+  }
+
+  function customOnKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    onKeyDown(event, 'city');
     setShowHint(false);
   }
   const setSearch = useCallback(debounce((city: string) => onChange(city, 'city'), 1000), []);
@@ -62,19 +79,21 @@ export const CityInput: React.FC<Props> = ({
     <div className='input-container'>
       <div className='input-box'>
         {((inputValue.length > 0) && (showHint)) &&
-          <div>
+          <div className='drop'>
             {hints.map(city => {
               const key = uuidv4();
               return (
                 <div
                   key={key}
                   style={{cursor: 'pointer'}}
-                  onClick={() => handleClick(city.name)}
+                  onClick={(event) => handleClick(city.name, event as any)}
+                  className="drop-text"
                 >
-                  {city.name} {city.countryCode}
+                  {city.name} {city.countryCode}        
                 </div>
               )
             })}
+            <div ref={hintsRef} />
           </div>
         }
         <input
@@ -84,7 +103,7 @@ export const CityInput: React.FC<Props> = ({
           placeholder="London"
           onChange={(event) => handleInput(event.target.value)}
           ref={myRef}
-          onKeyDown={(event) => onKeyDown(event)}
+          onKeyDown={(event) => customOnKeyDown(event)}
         />
       </div>
       <div className="center-div">
