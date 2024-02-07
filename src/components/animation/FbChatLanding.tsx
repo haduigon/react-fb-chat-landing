@@ -32,6 +32,7 @@ export const FbChatLanding: React.FC = () => {
   const [question5, setQuestion5] = useState(false);
   const [radioState, _setRadioState] = useState('');
   const [isLoading, setIsLoadong] = useState(false);
+  const [isMarried, setIsMarried] = useState<string>('');
   // const [celebs, setCelebs] = useState<string[]>([]);
   // const [choosenCeleb, setChoosenCeleb] = useState('0');
   const [marriage, setMarriage] = useState(false);
@@ -63,6 +64,7 @@ export const FbChatLanding: React.FC = () => {
     params.delete('year');
     params.delete('name');
     params.delete('city');
+    params.delete('isMarried');
     setSearchParams(params);
     setTimeout(() => {
       setQuestion1(true);
@@ -108,27 +110,17 @@ export const FbChatLanding: React.FC = () => {
     setSearchParams(params);
   }
 
-  function handleChange(hasPartner?: string) {
-    setQuestion5(true)
+  function handleChange(hasPartner: string) {
+    setQuestion5(true);
+    // console.log(hasPartner, 'part');  
+    setIsMarried(hasPartner);
+    handleInput(hasPartner, 'isMarried')
   }
   console.log(question4, 'question4');
 
   return (
     <div>
-      {/* <BiMaleFemale size={4}/> */}
       <FbAll text={intro} />
-      <FbAll
-          text={fourthQuestion[0]}
-          child={
-            <CheckboxDouble
-              onChange={handleChange}
-              text2={fourthQuestion[1]}
-              text3={fourthQuestion[2]}
-              icon1={<BiMaleFemale size={30} />}
-              icon2={<FaFemale size={30} />}
-            />
-          }
-        />
 
       {question1 &&
         <FbAll
@@ -186,6 +178,8 @@ export const FbChatLanding: React.FC = () => {
               onChange={handleChange}
               text2={fourthQuestion[1]}
               text3={fourthQuestion[2]}
+              icon1={<BiMaleFemale size={30} />}
+              icon2={<FaFemale size={30} />}
             />
           }
         />}

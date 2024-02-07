@@ -37,7 +37,8 @@ export const CheckboxDouble: React.FC<Props> = ({ onChange, text, icon1, icon2, 
             <label className="radio-box" >
               <Radio
                 name="a"
-                onChange={() => onChange(text2 ? text2 : '')}
+                onChange={() => onChange(text2 ? 'yes' : '')}
+                color='primary'
               />
               <div style={{marginRight: 10}}>
                 {icon1}
@@ -48,7 +49,8 @@ export const CheckboxDouble: React.FC<Props> = ({ onChange, text, icon1, icon2, 
             <label className="radio-box" >
               <Radio
                 name="a"
-                onChange={() => onChange(text3 ? text3 : '')}
+                onChange={() => onChange(text3 ? 'no' : '')}
+                color='danger'
               />
               <div style={{marginRight: 10}}>
                 {icon2}
