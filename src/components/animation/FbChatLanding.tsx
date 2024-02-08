@@ -16,6 +16,8 @@ import {
   fourthQuestion,
   fifthQuestion,
   fifthQuestionWithPartner,
+  questionSeven,
+  questionSixIfHasChild,
 } from '../../helpers/diallogText';
 import { CityInput } from '../input/CityInput';
 import { BiMaleFemale } from "react-icons/bi";
@@ -23,6 +25,8 @@ import { FaFemale } from "react-icons/fa";
 import { FaChildren } from "react-icons/fa6";
 import { MdChildCare } from "react-icons/md";
 import { GrRestroomWomen } from "react-icons/gr";
+import { TbMoodBoy } from "react-icons/tb";
+import { CgGirl } from "react-icons/cg";
 
 type SelectOption = {
   value: string | number | null,
@@ -39,7 +43,13 @@ export const FbChatLanding: React.FC = () => {
   const year: string = searchParams.get('year') || '';
   const city2: string = searchParams.get('city') || '';
   const isMarried: string = searchParams.get('isMarried') || '';
-  const partner: string = searchParams.get('Partner') || '';
+  const partnerDay: string = searchParams.get('dayPartner') || '';
+  const partnerMonth: string = searchParams.get('monthPartner') || '';
+  const partnerYear: string = searchParams.get('yearPartner') || '';
+  const childDay: string = searchParams.get('dayChild') || '';
+  const childMonth: string = searchParams.get('monthChild') || '';
+  const childYear: string = searchParams.get('yearChild') || '';
+  const hasChildren: string = searchParams.get('hasChildren') || '';
   const [question2, setQuestion2] = useState(false);
   const [question3, setQuestion3] = useState(false);
   const [question4, setQuestion4] = useState(false);
@@ -54,6 +64,7 @@ export const FbChatLanding: React.FC = () => {
   const [question1, setQuestion1] = useState(false);
   const [horoSign, setHoroSign] = useState('');
   const isBithdateSet = (day.length > 0) && (month.length > 0) && (year.length > 0);
+  const isPartnerBithdateSet = (partnerDay.length > 0) && (partnerMonth.length > 0) && (partnerYear.length > 0);
 
   useEffect(() => {
     // if (isBithdateSet) {
@@ -84,6 +95,10 @@ export const FbChatLanding: React.FC = () => {
     params.delete('dayPartner');
     params.delete('monthPartner');
     params.delete('yearPartner');
+    params.delete('dayChild');
+    params.delete('monthChild');
+    params.delete('yearChild');
+    params.delete('futureChild');
     setSearchParams(params);
     setTimeout(() => {
       setQuestion1(true);
@@ -130,7 +145,12 @@ export const FbChatLanding: React.FC = () => {
   }
 
   function handleChange(data: string, fieldName: string) {
-    setQuestion5(true);
+    if (fieldName === 'isMarried') {
+      setQuestion5(true);
+    }
+    if (fieldName === 'hasChildren') {
+      setQuestion6(true);
+    }
     handleInput(data, fieldName)
   }
 
@@ -223,6 +243,48 @@ export const FbChatLanding: React.FC = () => {
           text={fifthQuestionWithPartner}
           child={
             <SelectDateOfBirth onChange={(event: SingleValue<SelectOption>) => handleSelectParam(event, `${event?.name}Partner`)} />
+          }
+        />
+      }
+
+      {isPartnerBithdateSet &&
+        <FbAll
+          text={fifthQuestion[0]}
+          child={
+            <CheckboxDouble
+              onChange={(event) => handleChange(event, 'hasChildren')}
+              text2={fifthQuestion[1]}
+              text3={fifthQuestion[2]}
+              icon1={<FaChildren size={30} />}
+              icon2={<GrRestroomWomen size={30} />}
+              field='hasChildren'
+            />
+          }
+        />
+      }
+
+      {(question6 && hasChildren === 'yes') &&
+        <FbAll
+          text={questionSixIfHasChild}
+          child={
+            <SelectDateOfBirth onChange={(event: SingleValue<SelectOption>) => handleSelectParam(event, `${event?.name}Child`)} />
+          }
+        />
+      }
+
+      {(question6 && hasChildren === 'no') &&
+        <FbAll
+          text={questionSeven[0]}
+          child={
+            <CheckboxDouble
+              // text={}
+              text2={questionSeven[1]}
+              icon1={<TbMoodBoy />}
+              text3={questionSeven[2]}
+              icon2={<CgGirl />}
+              onChange={(event) => handleChange(event, 'futureChild')}
+              field='futureChild'
+            />
           }
         />
       }

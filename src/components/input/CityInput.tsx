@@ -35,7 +35,7 @@ export const CityInput: React.FC<Props> = ({
     let foundCity: Array<any> = [];
 
     if (city2.length > 0) {
-      foundCity = cities.filter(city => city.name.includes(inputValue))
+      foundCity = cities.filter(city => city.name.toLowerCase().includes(inputValue.toLowerCase()))
     }
 
     setHints(foundCity);
