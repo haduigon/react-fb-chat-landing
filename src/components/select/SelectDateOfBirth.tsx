@@ -4,7 +4,8 @@ import Select, { SingleValue } from "react-select";
 
 type SelectOption = {
   value: string | number | null,
-  label: string | number
+  label: string | number,
+  name: string,
 }
 type Props = {
   onChange: (value: SingleValue<SelectOption>, param: string) => void,
@@ -12,11 +13,11 @@ type Props = {
 
 export const SelectDateOfBirth: React.FC<Props> = ({ onChange }) => {
 
-  const arrayDay: SelectOption[] = days.map((day) => ({ value: day, label: day }));
+  const arrayDay: SelectOption[] = days.map((day) => ({ value: day, label: day, name: 'day' }));
 
-  const arrayMonth: SelectOption[] = months.map((month) => ({ value: month, label: month }));
+  const arrayMonth: SelectOption[] = months.map((month) => ({ value: month, label: month, name: 'month' }));
 
-  const arrayYear: SelectOption[] = years.map((year) => ({ value: year, label: year }));
+  const arrayYear: SelectOption[] = years.map((year) => ({ value: year, label: year, name: 'year' }));
 
   const selectOptionStyles = {
     cursor: 'pointer',
@@ -39,7 +40,7 @@ export const SelectDateOfBirth: React.FC<Props> = ({ onChange }) => {
             option: () => (selectOptionStyles)
           }}
           menuPlacement="top"
-          onChange={(event) => onChange(event, 'day')}
+          onChange={(event) => onChange(event, event?.name || '')}
           placeholder="day"
           isSearchable={false}
         />
