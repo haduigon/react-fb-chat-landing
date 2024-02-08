@@ -18,12 +18,14 @@ import {
   fifthQuestionWithPartner,
   questionSeven,
   questionSixIfHasChild,
+  questionEightFutureName,
+  getFinalPrompt,
 } from '../../helpers/diallogText';
 import { CityInput } from '../input/CityInput';
 import { BiMaleFemale } from "react-icons/bi";
 import { FaFemale } from "react-icons/fa";
 import { FaChildren } from "react-icons/fa6";
-import { MdChildCare } from "react-icons/md";
+// import { MdChildCare } from "react-icons/md";
 import { GrRestroomWomen } from "react-icons/gr";
 import { TbMoodBoy } from "react-icons/tb";
 import { CgGirl } from "react-icons/cg";
@@ -55,34 +57,20 @@ export const FbChatLanding: React.FC = () => {
   const [question4, setQuestion4] = useState(false);
   const [question5, setQuestion5] = useState(false);
   const [question6, setQuestion6] = useState(false);
+  const [question7, setQuestion7] = useState(false);
   const [radioState, _setRadioState] = useState('');
   const [isLoading, setIsLoadong] = useState(false);
+  const [finalPrompt, setFinalPrompt] = useState(false);
+  const [responseData, setResponseData] = useState('');
   // const [isMarried, setIsMarried] = useState<string>('');
   // const [celebs, setCelebs] = useState<string[]>([]);
   // const [choosenCeleb, setChoosenCeleb] = useState('0');
-  const [marriage, setMarriage] = useState(false);
+  // const [marriage, setMarriage] = useState(false);
   const [question1, setQuestion1] = useState(false);
-  const [horoSign, setHoroSign] = useState('');
+  // const [horoSign, setHoroSign] = useState('');
   const isBithdateSet = (day.length > 0) && (month.length > 0) && (year.length > 0);
   const isPartnerBithdateSet = (partnerDay.length > 0) && (partnerMonth.length > 0) && (partnerYear.length > 0);
-
-  useEffect(() => {
-    // if (isBithdateSet) {
-    //   setIsLoadong(true);
-    //   client.post('/chat', {
-    //     prompt: celebPrompt(horoSign)
-    //   }).then((response: any) => {
-    //     console.log(response.data, 'resp data');
-    //     setCelebs(response.data.message.split('\n\n'));
-    //   }).finally(() => {
-    //     setIsLoadong(false);
-    //   })
-    // }
-    if (day !== '' && month !== '' && year !== '') {
-      setHoroSign(getHoroSign(month, +day));
-      setQuestion3(true);
-    }
-  }, [isBithdateSet]);
+  const isChildBithdateSet = (childDay.length > 0) && (childMonth.length > 0) && (childYear.length > 0);
 
   useEffect(() => {
     params.delete('day');
@@ -99,11 +87,23 @@ export const FbChatLanding: React.FC = () => {
     params.delete('monthChild');
     params.delete('yearChild');
     params.delete('futureChild');
+    params.delete('futureChildName');
     setSearchParams(params);
     setTimeout(() => {
       setQuestion1(true);
     }, 8000)
   }, [])
+
+  useEffect(() => {
+    if (finalPrompt) {
+      setIsLoadong(true);
+      client.post('chat', {
+        prompt: getFinalPrompt('')
+      }).then((response: any) => {
+        setResponseData(response.data.message);
+      }).finally(() => setIsLoadong(false))
+    }
+  }, [finalPrompt]);
 
   function handleInput(value: string, fieldName: string) {
     if (!value) {
@@ -126,6 +126,12 @@ export const FbChatLanding: React.FC = () => {
         if (event.key === 'Enter' && inputName.replace(/\s/g, '').length > 0) {
           setQuestion4(true);
         }
+        break;
+      case 'futureChildName':
+        if (event.key === 'Enter' && inputName.replace(/\s/g, '').length > 0) {
+          setFinalPrompt(true);
+        }
+        break;
     }
   }
 
@@ -150,6 +156,9 @@ export const FbChatLanding: React.FC = () => {
     }
     if (fieldName === 'hasChildren') {
       setQuestion6(true);
+    }
+    if (fieldName === 'futureChild') {
+      setQuestion7(true);
     }
     handleInput(data, fieldName)
   }
@@ -193,7 +202,7 @@ export const FbChatLanding: React.FC = () => {
         />
       }
 
-      {question3 &&
+      {isBithdateSet &&
         <FbAll
           text={thirdQuestion}
           child={<CityInput
@@ -277,7 +286,6 @@ export const FbChatLanding: React.FC = () => {
           text={questionSeven[0]}
           child={
             <CheckboxDouble
-              // text={}
               text2={questionSeven[1]}
               icon1={<TbMoodBoy />}
               text3={questionSeven[2]}
@@ -289,9 +297,47 @@ export const FbChatLanding: React.FC = () => {
         />
       }
 
+      {isChildBithdateSet &&
+        <FbAll
+          text={questionSeven[0]}
+          child={
+            <CheckboxDouble
+              text2={questionSeven[1]}
+              icon1={<TbMoodBoy />}
+              text3={questionSeven[2]}
+              icon2={<CgGirl />}
+              onChange={(event) => handleChange(event, 'futureChild')}
+              field='futureChild'
+            />
+          }
+        />
+      }
+
+      {question7 &&
+        <FbAll
+          text={questionEightFutureName}
+          child={
+            <NameInput
+              onChange={(event) => handleInput(event.target.value, 'futureChildName')}
+              onKeyDown={handleKeyDown}
+              inputErrorText="Input child name and"
+              field="futureChildName"
+              showEnter={finalPrompt}
+              placeholder='Michelle'
+            />
+          }
+        />
+      }
+
       {isLoading && (
         <FbAnimation />
       )}
+
+      {responseData.length > 0 &&
+        <FbAll 
+          text={responseData}
+        />
+      }
 
     </div>
   )

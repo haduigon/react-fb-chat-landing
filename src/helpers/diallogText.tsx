@@ -13,6 +13,7 @@ export const fifthQuestion = ["Have you already welcomed children into your life
 export const fifthQuestionWithPartner = "In the realm of personalised horoscope forecasts, illuminate the cosmic canvas by revealing the date of birth of your husband or partner. Unveil the celestial mysteries that shape your shared destiny.";
 export const questionSixIfHasChild = 'Please, provide the birthdate of your first child. This will enable us to tailor insightful celestial forecasts to your unique parenting experience.'
 export const questionSeven = ["As you imagine your future child, considering the astrological mysteries, do you lean towards a preference for a son or a daughter?", "Yearning for a heavenly son", "Longing for a cosmic daughter"]
-export const finalPrompt = (horoSign: string) => {
-  return '';
+export const questionEightFutureName = "Have you already woven dreams around the name of your future child? If so, whisper it into our celestial realm";
+export const getFinalPrompt = (horoSign?: string) => {
+  return 'writel me a horoscope for a saggitarius for a month';
 }

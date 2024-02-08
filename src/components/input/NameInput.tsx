@@ -8,6 +8,7 @@ type Props = {
   inputErrorText: string,
   field: string,
   showEnter: boolean,
+  placeholder?: string
 }
 
 export const NameInput: React.FC<Props> = ({
@@ -16,6 +17,7 @@ export const NameInput: React.FC<Props> = ({
   inputErrorText,
   field,
   showEnter,
+  placeholder="Lilu Dallas",
 }) => {
   const [searchParams] = useSearchParams();
   const inputValue: string = searchParams.get(field) || '';
@@ -37,10 +39,10 @@ export const NameInput: React.FC<Props> = ({
           value={inputValue}
           className="input is-link custom-font input-box"
           type="text"
-          placeholder="Lilu Dallas"
+          placeholder={placeholder}
           onChange={(event) => onChange(event)}
           ref={myRef}
-          onKeyDown={(event) => onKeyDown(event, 'name')}
+          onKeyDown={(event) => onKeyDown(event, field)}
         />
       </div>
       <div className="center-div">
