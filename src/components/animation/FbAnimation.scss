@@ -15,11 +15,14 @@
 
 #wave .srfriendzone {
   padding-right: 5px;
+  // max-height: 800px;
 }
 
 #wave .srsend {
   float: right;
   cursor: pointer;
+  // max-height: 800px;
+
 }
 
 #wave .dot {
@@ -68,6 +71,8 @@
   align-items: flex-start;
   margin-top: 10px;
   margin-bottom: 10px;
+  max-height: 800px;
+  overflow: hidden;
 
   @media screen and (max-width: 600px) {
     justify-content: left;
@@ -101,23 +106,24 @@
 
 .cover-box {
   position: relative;
-  display: flex;
+  // display: flex;
+  // height: 100%;
 }
 
 .cover {
   position: absolute;
-  top: 10%;
+  top: 30%;
   width: 100%;
-  height: 90%;
+  height: 100%;
   margin: 0;
   padding: 0;
-  opacity: 1;
+  // opacity: 1;
   background: linear-gradient(rgb(255 255 255 / 90%),rgb(255 255 255 / 100%));
 }
 
 .redirect {
   position: absolute;
-  top: 12%;
+  top: 35%;
   left: 23%;
 
   width: 60%;

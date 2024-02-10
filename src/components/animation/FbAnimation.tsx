@@ -55,7 +55,9 @@ export const FbMessage: React.FC<Props> = ({ text, child }) => {
         <div id="wave" style={{marginTop: 10}}>
           <span className="srtextarea"></span>
           <span className="srfriendzone custom-font">
-            <span className="">{text}</span>
+            <span className="" style={{maxHeight: 500}}>
+              {text}
+            </span>
           </span>
           <p className="" />
           {/* </p> */}
