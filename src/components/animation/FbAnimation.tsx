@@ -2,10 +2,13 @@ import { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import "./FbAnimation.scss";
 import { StateContext } from "../../context/AppContext";
 import { ACTIONS } from "../../helpers/enums";
+import classNames from 'classnames';
+import { Stripe } from "../payment/Stripe";
 
 type Props = {
   text: string | ReactNode,
-  child?: ReactNode
+  child?: ReactNode,
+  cover?: boolean,
 }
 
 export const FbAnimation: React.FC = () => {
@@ -23,7 +26,7 @@ export const FbAnimation: React.FC = () => {
         <div id="wave">
           <span className="srtextarea"></span>
           <span className="srfriendzone custom-font">
-            Space AI is typing
+            BabyStar AI is typing
           </span>
           <span className="dot one"></span>
           <span className="dot two"></span>
@@ -49,13 +52,13 @@ export const FbMessage: React.FC<Props> = ({ text, child }) => {
     <div ref={myRef}>
       <div className='message-block'>
         <div className='custom-icon mt100'></div>
-        <div id="wave" >
+        <div id="wave" style={{marginTop: 10}}>
           <span className="srtextarea"></span>
           <span className="srfriendzone custom-font">
-            {text}
+            <span className="">{text}</span>
           </span>
-          <p className="">
-          </p>
+          <p className="" />
+          {/* </p> */}
         </div>
       </div>
       <div style={{ marginLeft: '65px' }}>{child}</div>
@@ -63,13 +66,22 @@ export const FbMessage: React.FC<Props> = ({ text, child }) => {
   )
 }
 
-export const FbAll: React.FC<Props> = ({ text, child }) => {
+export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
 
   const [showTyping, setShowTyping] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [showChild, setShowChild] = useState(false);
   const myRef = useRef<null | HTMLDivElement>(null);
+  const myFinalRef = useRef<null | HTMLDivElement>(null);
   const { state, dispatch } = useContext(StateContext);
+
+  useEffect(() => {
+    if (myFinalRef.current) {
+      setTimeout(() => {
+        myFinalRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 5200);
+    }
+  }, [myFinalRef, cover]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -95,8 +107,8 @@ export const FbAll: React.FC<Props> = ({ text, child }) => {
 
     setTimeout(() => {
       dispatch({ type: ACTIONS.SET_ONLINE, payload: false })
-      console.log(state.isOnline ,'wtf?');
-      
+      // console.log(state.isOnline ,'wtf?');
+
     }, 6000);
     setTimeout(() => {
       dispatch({ type: ACTIONS.SET_ONLINE, payload: true })
@@ -105,18 +117,29 @@ export const FbAll: React.FC<Props> = ({ text, child }) => {
   const time = new Date();
 
   const customTime = `${time.getHours()} : ${time.getMinutes()}`;
-
+  console.log(cover, 'cover prop');
+  
   return (
-    <div>
-     {showMessage &&  <div className="message-time">{customTime}</div>}
+    <div ref={myFinalRef}>
+      {showMessage && <div className="message-time">{customTime}</div>}
       <div className='message-block'>
-        <div >
+        <div>
           {showTyping && <FbAnimation />} {showMessage &&
-            <div>
+            <div className={classNames({
+              "cover-box": cover,
+            })}>
               <FbMessage text={text} />
+              <div className={classNames({
+                "cover": cover,
+              })} />
+              <div className={classNames({
+                "redirect": cover,
+              })}>
+                {cover && <Stripe />}
+              </div>
             </div>
           }
-          <div style={{ marginLeft: '65px' }} ref={myRef} className="mb-10">
+          <div style={{ marginLeft: '65px' }}  className="mb-10" ref={!cover ? myRef : null}>
             {showChild && child}
           </div>
         </div>

@@ -34,15 +34,17 @@ export const Stripe: React.FC = () => {
   };
 
   return (
-    <div style={{ marginLeft: 10, maxWidth: 300 }}>
-      <button onClick={() => setShowPayForm(true)}>Pay</button>
+    <div style={{ marginLeft: 0, width: 250 }}>
+      <button onClick={() => setShowPayForm(true)}>Read whole forecast</button>
       {showPayForm && (
-        <div className="App">
-          4 dollar for your destiny
+        <div className="custom-font">
+          <div style={{color: 'black'}} className="center-div">2$ dollars</div>
           {clientSecret && (
-            <Elements options={options as any} stripe={stripePromise}>
+            <div className="center-div">
+              <Elements options={options as any} stripe={stripePromise}>
               <CheckoutForm />
             </Elements>
+            </div>
           )}
         </div>
       )}

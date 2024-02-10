@@ -1,13 +1,13 @@
-import { FbAll, FbAnimation, FbMessage } from './FbAnimation';
-import { useCallback, useEffect, useState } from 'react';
+import { FbAll, FbAnimation } from './FbAnimation';
+import { useContext, useEffect, useState } from 'react';
 import { NameInput } from "../input/NameInput";
 import { useSearchParams } from 'react-router-dom';
-import { CheckboxDouble, CheckboxCelebs } from '../checkbox/CustomCheckBoxes';
+import { CheckboxDouble } from '../checkbox/CustomCheckBoxes';
 import { SelectDateOfBirth } from '../select/SelectDateOfBirth';
 import { SingleValue } from "react-select";
 // import { GiSwordwoman, GiSwordman } from "react-icons/gi";
 // import { Stripe } from '../payment/Stripe';
-import { getHoroSign, client } from '../../helpers/utils';
+import { client } from '../../helpers/utils';
 import {
   intro,
   firstQuestion,
@@ -29,6 +29,8 @@ import { FaChildren } from "react-icons/fa6";
 import { GrRestroomWomen } from "react-icons/gr";
 import { TbMoodBoy } from "react-icons/tb";
 import { CgGirl } from "react-icons/cg";
+import { StateContext } from '../../context/AppContext';
+import { ACTIONS } from '../../helpers/enums';
 
 type SelectOption = {
   value: string | number | null,
@@ -43,7 +45,7 @@ export const FbChatLanding: React.FC = () => {
   const day: string = searchParams.get('day') || '';
   const month: string = searchParams.get('month') || '';
   const year: string = searchParams.get('year') || '';
-  const city2: string = searchParams.get('city') || '';
+  // const city2: string = searchParams.get('city') || '';
   const isMarried: string = searchParams.get('isMarried') || '';
   const partnerDay: string = searchParams.get('dayPartner') || '';
   const partnerMonth: string = searchParams.get('monthPartner') || '';
@@ -53,12 +55,12 @@ export const FbChatLanding: React.FC = () => {
   const childYear: string = searchParams.get('yearChild') || '';
   const hasChildren: string = searchParams.get('hasChildren') || '';
   const [question2, setQuestion2] = useState(false);
-  const [question3, setQuestion3] = useState(false);
+  // const [question3, setQuestion3] = useState(false);
   const [question4, setQuestion4] = useState(false);
   const [question5, setQuestion5] = useState(false);
   const [question6, setQuestion6] = useState(false);
   const [question7, setQuestion7] = useState(false);
-  const [radioState, _setRadioState] = useState('');
+  // const [radioState, _setRadioState] = useState('');
   const [isLoading, setIsLoadong] = useState(false);
   const [finalPrompt, setFinalPrompt] = useState(false);
   const [responseData, setResponseData] = useState('');
@@ -71,6 +73,7 @@ export const FbChatLanding: React.FC = () => {
   const isBithdateSet = (day.length > 0) && (month.length > 0) && (year.length > 0);
   const isPartnerBithdateSet = (partnerDay.length > 0) && (partnerMonth.length > 0) && (partnerYear.length > 0);
   const isChildBithdateSet = (childDay.length > 0) && (childMonth.length > 0) && (childYear.length > 0);
+  const { state, dispatch } = useContext(StateContext);
 
   useEffect(() => {
     params.delete('day');
@@ -101,6 +104,7 @@ export const FbChatLanding: React.FC = () => {
         prompt: getFinalPrompt('')
       }).then((response: any) => {
         setResponseData(response.data.message);
+        dispatch({ type: ACTIONS.SET_FORECAST, payload: response.data.message });
       }).finally(() => setIsLoadong(false))
     }
   }, [finalPrompt]);
@@ -114,6 +118,9 @@ export const FbChatLanding: React.FC = () => {
 
     setSearchParams(params);
   }
+
+  console.log(state.forecast);
+  
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>, filedName?: string) {
     switch (filedName) {
@@ -166,7 +173,11 @@ export const FbChatLanding: React.FC = () => {
   return (
     <div>
 
-      <FbAll text={intro} />
+      {/* <div className="cover-box"> */}
+        <FbAll text={intro} />
+        {/* <div className="cover" />
+        <div className="redirect">Read whole story</div> */}
+      {/* </div> */}
 
       {question1 &&
         <FbAll
@@ -334,9 +345,13 @@ export const FbChatLanding: React.FC = () => {
       )}
 
       {responseData.length > 0 &&
-        <FbAll 
-          text={responseData}
-        />
+        <>
+          <FbAll
+            text={responseData}
+            cover={true}
+          />
+          <div></div>
+        </>
       }
 
     </div>
