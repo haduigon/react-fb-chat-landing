@@ -105,6 +105,7 @@ export const FbChatLanding: React.FC = () => {
       }).then((response: any) => {
         setResponseData(response.data.message);
         dispatch({ type: ACTIONS.SET_FORECAST, payload: response.data.message });
+        localStorage.setItem('report', response.data.message);
       }).finally(() => setIsLoadong(false))
     }
   }, [finalPrompt]);

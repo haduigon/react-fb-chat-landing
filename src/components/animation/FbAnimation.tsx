@@ -4,6 +4,7 @@ import { StateContext } from "../../context/AppContext";
 import { ACTIONS } from "../../helpers/enums";
 import classNames from 'classnames';
 import { Stripe } from "../payment/Stripe";
+import { Navigate } from "react-router-dom";
 
 type Props = {
   text: string | ReactNode,
@@ -137,7 +138,7 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
               <div className={classNames({
                 "redirect": cover,
               })}>
-                {cover && <Stripe />}
+                {cover && <Navigate to="/download"/>}
               </div>
             </div>
           }

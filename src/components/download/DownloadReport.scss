@@ -1,6 +1,13 @@
 .report-box {
-  width: 100px;
-  margin-left: 10px;
-  margin-right: 10px;
+  width: fit-content;
+  margin-left: 20px;
+  margin-right: 20px;
   margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.download-button {
+  cursor: pointer;
+  width: 100px;
+  border: 1px solid grey;
 }
