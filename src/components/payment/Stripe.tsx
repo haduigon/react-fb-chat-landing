@@ -17,7 +17,7 @@ export const Stripe: React.FC = () => {
       headers: {
         "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*'
       },
-      items: { id: "xl-tshirt", amount: 2 }
+      items: { id: "astro-forecast", amount: 1 }
     })
       .then((res) => {
         setClientSecret(res.data.clientSecret);

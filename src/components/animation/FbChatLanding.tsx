@@ -5,8 +5,6 @@ import { useSearchParams } from 'react-router-dom';
 import { CheckboxDouble } from '../checkbox/CustomCheckBoxes';
 import { SelectDateOfBirth } from '../select/SelectDateOfBirth';
 import { SingleValue } from "react-select";
-// import { GiSwordwoman, GiSwordman } from "react-icons/gi";
-// import { Stripe } from '../payment/Stripe';
 import { client } from '../../helpers/utils';
 import {
   intro,
@@ -25,12 +23,12 @@ import { CityInput } from '../input/CityInput';
 import { BiMaleFemale } from "react-icons/bi";
 import { FaFemale } from "react-icons/fa";
 import { FaChildren } from "react-icons/fa6";
-// import { MdChildCare } from "react-icons/md";
 import { GrRestroomWomen } from "react-icons/gr";
 import { TbMoodBoy } from "react-icons/tb";
 import { CgGirl } from "react-icons/cg";
 import { StateContext } from '../../context/AppContext';
 import { ACTIONS } from '../../helpers/enums';
+import ReactPixel, { AdvancedMatching } from 'react-facebook-pixel';
 
 type SelectOption = {
   value: string | number | null,
@@ -45,7 +43,6 @@ export const FbChatLanding: React.FC = () => {
   const day: string = searchParams.get('day') || '';
   const month: string = searchParams.get('month') || '';
   const year: string = searchParams.get('year') || '';
-  // const city2: string = searchParams.get('city') || '';
   const isMarried: string = searchParams.get('isMarried') || '';
   const partnerDay: string = searchParams.get('dayPartner') || '';
   const partnerMonth: string = searchParams.get('monthPartner') || '';
@@ -54,26 +51,31 @@ export const FbChatLanding: React.FC = () => {
   const childMonth: string = searchParams.get('monthChild') || '';
   const childYear: string = searchParams.get('yearChild') || '';
   const hasChildren: string = searchParams.get('hasChildren') || '';
+  const pixelId: string = searchParams.get('pixelId') || '';
+
   const [question2, setQuestion2] = useState(false);
-  // const [question3, setQuestion3] = useState(false);
   const [question4, setQuestion4] = useState(false);
   const [question5, setQuestion5] = useState(false);
   const [question6, setQuestion6] = useState(false);
   const [question7, setQuestion7] = useState(false);
-  // const [radioState, _setRadioState] = useState('');
   const [isLoading, setIsLoadong] = useState(false);
   const [finalPrompt, setFinalPrompt] = useState(false);
   const [responseData, setResponseData] = useState('');
-  // const [isMarried, setIsMarried] = useState<string>('');
-  // const [celebs, setCelebs] = useState<string[]>([]);
-  // const [choosenCeleb, setChoosenCeleb] = useState('0');
-  // const [marriage, setMarriage] = useState(false);
   const [question1, setQuestion1] = useState(false);
   // const [horoSign, setHoroSign] = useState('');
+
   const isBithdateSet = (day.length > 0) && (month.length > 0) && (year.length > 0);
   const isPartnerBithdateSet = (partnerDay.length > 0) && (partnerMonth.length > 0) && (partnerYear.length > 0);
   const isChildBithdateSet = (childDay.length > 0) && (childMonth.length > 0) && (childYear.length > 0);
   const { state, dispatch } = useContext(StateContext);
+  const advancedMatching = { em: 'some@email.com' };
+  const options = {
+    autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
+    debug: false, // enable logs
+  };
+  ReactPixel.init(pixelId, advancedMatching as AdvancedMatching, options);
+  // ReactPixel.pageView();
+  // console.log(pixelId, 'pixelId');
 
   useEffect(() => {
     params.delete('day');
@@ -101,7 +103,8 @@ export const FbChatLanding: React.FC = () => {
     if (finalPrompt) {
       setIsLoadong(true);
       client.post('chat', {
-        prompt: getFinalPrompt('')
+        prompt: getFinalPrompt(''),
+        clientDetails: inputName,
       }).then((response: any) => {
         setResponseData(response.data.message);
         dispatch({ type: ACTIONS.SET_FORECAST, payload: response.data.message });
@@ -121,7 +124,7 @@ export const FbChatLanding: React.FC = () => {
   }
 
   console.log(state.forecast);
-  
+
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>, filedName?: string) {
     switch (filedName) {
@@ -174,11 +177,7 @@ export const FbChatLanding: React.FC = () => {
   return (
     <div>
 
-      {/* <div className="cover-box"> */}
-        <FbAll text={intro} />
-        {/* <div className="cover" />
-        <div className="redirect">Read whole story</div> */}
-      {/* </div> */}
+      <FbAll text={intro} />
 
       {question1 &&
         <FbAll
@@ -192,20 +191,6 @@ export const FbChatLanding: React.FC = () => {
           />}
         />
       }
-
-      {/* {inputName.length > 1 && <Navigate to="/download"/>} */}
-
-      {/* {question2 && 
-        <FbAll
-        text={secondQuestion}
-        child={<CityInput
-          onChange={handleInput}
-          onKeyDown={handleKeyDown}
-          inputErrorText='Input your city of birth and'
-          showEnter={question2}
-        />}
-      />
-      } */}
 
       {question2 &&
         <FbAll
@@ -226,7 +211,6 @@ export const FbChatLanding: React.FC = () => {
           />}
         />
       }
-
 
       {question4 &&
         <FbAll
@@ -352,8 +336,7 @@ export const FbChatLanding: React.FC = () => {
             cover={true}
           />
           <div></div>
-        </>
-      }
+        </>}
 
     </div>
   )

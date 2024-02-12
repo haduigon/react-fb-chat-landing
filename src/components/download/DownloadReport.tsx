@@ -4,21 +4,27 @@ import { StateContext } from '../../context/AppContext';
 import download from 'js-file-download';
 import { client } from '../../helpers/utils';
 import { GiSagittarius } from "react-icons/gi";
+import { useSearchParams } from 'react-router-dom';
+import ReactPixel from 'react-facebook-pixel';
 
 export const DownloadReport = () => {
+  const [searchParams] = useSearchParams();
 
+  const name = searchParams.get('name')
   const sagittarius = <GiSagittarius size={30} />
 
   const { state } = useContext(StateContext);
   const report = state.forecast.length > 0 ? state.forecast : localStorage.getItem('report');
 
-  const fileName = 'test.pdf';
+  const fileName = `${name}2.pdf`;
 
   async function getFile() {
     const response = await downloadFile();
     const content = response.headers['content-type'];
     download(response.data, fileName, content);
   }
+
+  ReactPixel.track('Purchase')
 
   async function downloadFile() {
 
@@ -27,7 +33,7 @@ export const DownloadReport = () => {
         'content-type': '*'
       },
       params: {
-        body: 'test'
+        clientDetails: name,
       },
       responseType: 'blob',
     })

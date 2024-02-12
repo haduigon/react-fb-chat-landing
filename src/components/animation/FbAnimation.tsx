@@ -4,7 +4,7 @@ import { StateContext } from "../../context/AppContext";
 import { ACTIONS } from "../../helpers/enums";
 import classNames from 'classnames';
 import { Stripe } from "../payment/Stripe";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 
 type Props = {
   text: string | ReactNode,
@@ -77,7 +77,8 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
   const myRef = useRef<null | HTMLDivElement>(null);
   const myFinalRef = useRef<null | HTMLDivElement>(null);
   const { state, dispatch } = useContext(StateContext);
-
+  const [searchParams] = useSearchParams();
+  const name = searchParams.get('name')
   useEffect(() => {
     if (myFinalRef.current) {
       setTimeout(() => {
@@ -121,7 +122,13 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
 
   const customTime = `${time.getHours()} : ${time.getMinutes()}`;
   console.log(cover, 'cover prop');
-  
+  // function onClick() {
+    const navigate = useNavigate();
+    const goToDownload = () => navigate({
+      pathname: "/download",
+      search: `?name=${name}`
+    })
+  // }
   return (
     <div ref={myFinalRef}>
       {showMessage && <div className="message-time">{customTime}</div>}
@@ -138,7 +145,7 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
               <div className={classNames({
                 "redirect": cover,
               })}>
-                {cover && <Navigate to="/download"/>}
+                {cover && (<div onClick={goToDownload}>Redirect</div>)}
               </div>
             </div>
           }

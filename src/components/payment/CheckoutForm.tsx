@@ -57,6 +57,7 @@ export default function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
+        // Completion page
         return_url: "https://localhost:3001/#/fb",
       },
     });
