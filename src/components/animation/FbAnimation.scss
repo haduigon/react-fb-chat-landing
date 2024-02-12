@@ -15,14 +15,11 @@
 
 #wave .srfriendzone {
   padding-right: 5px;
-  // max-height: 800px;
 }
 
 #wave .srsend {
   float: right;
   cursor: pointer;
-  // max-height: 800px;
-
 }
 
 #wave .dot {
@@ -106,8 +103,6 @@
 
 .cover-box {
   position: relative;
-  // display: flex;
-  // height: 100%;
 }
 
 .cover {
@@ -117,8 +112,7 @@
   height: 100%;
   margin: 0;
   padding: 0;
-  // opacity: 1;
-  background: linear-gradient(rgb(255 255 255 / 90%),rgb(255 255 255 / 100%));
+  background: linear-gradient(rgb(255 255 255 / 90%), rgb(255 255 255 / 100%));
 }
 
 .redirect {
@@ -132,5 +126,3 @@
   align-items: center;
   color: #DCDCDC;
 }
-
-
