@@ -48,7 +48,7 @@ export const DownloadReport = () => {
   }
   return (
     <div className="report-page-container" >
-      <div ref={myRef} style={{marginBottom: 50}}>Best astro forecast ever</div>
+      <div ref={myRef} style={{marginBottom: 10}}>Best astro forecast ever</div>
       <div className="sign-box" >{sagittarius}</div>
       <div className="download-button" onClick={getFile}>Download report</div>
       <div className="report-box">
