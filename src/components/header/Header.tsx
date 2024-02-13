@@ -5,10 +5,9 @@ import { HiVideoCamera } from "react-icons/hi";
 import { IoIosInformationCircle } from "react-icons/io";
 import classNames from 'classnames';
 import { StateContext } from "../../context/AppContext";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 
 export const Header = () => {
-
   const { state } = useContext(StateContext);
 
   return (

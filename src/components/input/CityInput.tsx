@@ -43,7 +43,9 @@ export const CityInput: React.FC<Props> = ({
 
   useEffect(() => {
     if (myRef.current) {
-      myRef.current.focus();
+      setTimeout(() => {
+        myRef.current?.focus();
+      }, 1000)
     }
   }, [myRef])
 

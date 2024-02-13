@@ -1,5 +1,5 @@
 import { FbAll, FbAnimation } from './FbAnimation';
-import { useContext, useEffect, useState } from 'react';
+import { memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { NameInput } from "../input/NameInput";
 import { useSearchParams } from 'react-router-dom';
 import { CheckboxDouble } from '../checkbox/CustomCheckBoxes';
@@ -28,7 +28,8 @@ import { TbMoodBoy } from "react-icons/tb";
 import { CgGirl } from "react-icons/cg";
 import { StateContext } from '../../context/AppContext';
 import { ACTIONS } from '../../helpers/enums';
-import ReactPixel, { AdvancedMatching } from 'react-facebook-pixel';
+import ReactPixel, { AdvancedMatching, fbq } from 'react-facebook-pixel';
+// import { Tracker } from '../../helpers/utils';
 
 type SelectOption = {
   value: string | number | null,
@@ -36,7 +37,7 @@ type SelectOption = {
   name: string,
 }
 
-export const FbChatLanding: React.FC = () => {
+export const FbChatLanding = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const params = new URLSearchParams(searchParams);
   const inputName: string = searchParams.get('name') || '';
@@ -63,19 +64,12 @@ export const FbChatLanding: React.FC = () => {
   const [responseData, setResponseData] = useState('');
   const [question1, setQuestion1] = useState(false);
   // const [horoSign, setHoroSign] = useState('');
+  const [pixelTrigger, setPixelTrigger] = useState(false);
 
   const isBithdateSet = (day.length > 0) && (month.length > 0) && (year.length > 0);
   const isPartnerBithdateSet = (partnerDay.length > 0) && (partnerMonth.length > 0) && (partnerYear.length > 0);
   const isChildBithdateSet = (childDay.length > 0) && (childMonth.length > 0) && (childYear.length > 0);
   const { state, dispatch } = useContext(StateContext);
-  const advancedMatching = { em: 'some@email.com' };
-  const options = {
-    autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
-    debug: false, // enable logs
-  };
-  ReactPixel.init(pixelId, advancedMatching as AdvancedMatching, options);
-  // ReactPixel.pageView();
-  // console.log(pixelId, 'pixelId');
 
   useEffect(() => {
     params.delete('day');
@@ -97,6 +91,18 @@ export const FbChatLanding: React.FC = () => {
     setTimeout(() => {
       setQuestion1(true);
     }, 8000)
+  }, [])
+
+  useEffect(() => {
+    const advancedMatching = { em: 'some@email.com' };
+    const options = {
+      autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
+      debug: true, // enable logs
+    };
+    ReactPixel.init(pixelId, advancedMatching as AdvancedMatching, options);
+   
+    ReactPixel.pageView();
+  
   }, [])
 
   useEffect(() => {
@@ -122,9 +128,6 @@ export const FbChatLanding: React.FC = () => {
 
     setSearchParams(params);
   }
-
-  console.log(state.forecast);
-
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>, filedName?: string) {
     switch (filedName) {
@@ -175,7 +178,9 @@ export const FbChatLanding: React.FC = () => {
   }
 
   return (
+
     <div>
+      {/* <Tracker pixelId={pixelId} /> */}
 
       <FbAll text={intro} />
 

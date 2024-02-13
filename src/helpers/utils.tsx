@@ -1,4 +1,6 @@
 import axios from 'axios';
+import React, { useEffect } from 'react';
+import ReactPixel, { AdvancedMatching, fbq } from 'react-facebook-pixel';
 
 export function getHoroSign(month: string, day: number) {
 
@@ -97,3 +99,27 @@ export const client = axios.create({
   baseURL: apiUrl,
   withCredentials: false,
 })
+
+type Props = {
+  pixelId: string,
+}
+
+export const Tracker: React.FC<Props> = React.memo((({ pixelId }) => {
+  
+  useEffect(() => {
+    const advancedMatching = { em: 'some@email.com' };
+    const options = {
+      autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
+      debug: true, // enable logs
+    };
+    ReactPixel.init("530232662524472", advancedMatching as AdvancedMatching, options);
+   
+    ReactPixel.pageView();
+    console.log('tracker works');
+    
+  }, [])
+
+  return (
+    <></>
+  )
+}))

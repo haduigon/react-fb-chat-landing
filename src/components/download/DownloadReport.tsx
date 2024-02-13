@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import './DownloadReport.scss';
 import { StateContext } from '../../context/AppContext';
 import download from 'js-file-download';
@@ -17,6 +17,7 @@ export const DownloadReport = () => {
   const report = state.forecast.length > 0 ? state.forecast : localStorage.getItem('report');
 
   const fileName = `${name}2.pdf`;
+  const myRef = useRef<null | HTMLDivElement>(null);
 
   async function getFile() {
     const response = await downloadFile();
@@ -24,7 +25,14 @@ export const DownloadReport = () => {
     download(response.data, fileName, content);
   }
 
-  ReactPixel.track('Purchase')
+  useEffect(() => {
+    ReactPixel.track('Purchase', {currency: "USD", value: 2.00})
+    if(myRef.current) {
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      }, 200)
+    }
+  }, [])
 
   async function downloadFile() {
 
@@ -39,8 +47,9 @@ export const DownloadReport = () => {
     })
   }
   return (
-    <div className="report-page-container">
-      <div className="sign-box">{sagittarius}</div>
+    <div className="report-page-container" >
+      <div ref={myRef} style={{marginBottom: 50}}>Best astro forecast ever</div>
+      <div className="sign-box" >{sagittarius}</div>
       <div className="download-button" onClick={getFile}>Download report</div>
       <div className="report-box">
         {report}

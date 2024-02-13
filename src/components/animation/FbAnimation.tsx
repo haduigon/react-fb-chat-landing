@@ -53,10 +53,10 @@ export const FbMessage: React.FC<Props> = ({ text, child }) => {
     <div ref={myRef}>
       <div className='message-block'>
         <div className='custom-icon mt100'></div>
-        <div id="wave" style={{marginTop: 10}}>
+        <div id="wave" style={{ marginTop: 10 }}>
           <span className="srtextarea"></span>
           <span className="srfriendzone custom-font">
-            <span className="" style={{maxHeight: 500}}>
+            <span className="" style={{ maxHeight: 500 }}>
               {text}
             </span>
           </span>
@@ -100,7 +100,7 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
     if (child) {
       setTimeout(() => {
         setShowChild(true);
-      }, 4650);
+      }, 4750);
     }
 
     if (myRef.current) {
@@ -111,8 +111,6 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
 
     setTimeout(() => {
       dispatch({ type: ACTIONS.SET_ONLINE, payload: false })
-      // console.log(state.isOnline ,'wtf?');
-
     }, 6000);
     setTimeout(() => {
       dispatch({ type: ACTIONS.SET_ONLINE, payload: true })
@@ -121,14 +119,13 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
   const time = new Date();
 
   const customTime = `${time.getHours()} : ${time.getMinutes()}`;
-  console.log(cover, 'cover prop');
-  // function onClick() {
-    const navigate = useNavigate();
-    const goToDownload = () => navigate({
-      pathname: "/download",
-      search: `?name=${name}`
-    })
-  // }
+
+  const navigate = useNavigate();
+  const goToDownload = () => navigate({
+    pathname: "/download",
+    search: `?name=${name}`
+  })
+
   return (
     <div ref={myFinalRef}>
       {showMessage && <div className="message-time">{customTime}</div>}
@@ -149,7 +146,7 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
               </div>
             </div>
           }
-          <div style={{ marginLeft: '65px' }}  className="mb-10" ref={!cover ? myRef : null}>
+          <div style={{ marginLeft: '65px' }} className="mb-10" ref={!cover ? myRef : null}>
             {showChild && child}
           </div>
         </div>
