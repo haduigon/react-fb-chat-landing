@@ -1,3 +1,4 @@
+import { getHoroSign } from "./utils"
 
 export const celebPrompt = (horoSign: string) => {
   return `Write me 3 well-known female and as younger as it possible selebs who was born between 1 april and 29 april and have children. Response should be strictly the next in json [{name: name, lifeDescritpion: life descripton data}, {name: name, lifeDescritpion: life descripton data}, {name: name, lifeDescritpion: life descripton data}]`
@@ -23,6 +24,11 @@ export const questionSeven = ["As you imagine your future child, considering the
 
 export const questionEightFutureName = "Have you already woven dreams around the name of your future child? If so, whisper it into our celestial realm";
 
-export const getFinalPrompt = (horoSign?: string) => {
-  return 'writel me a horoscope for a saggitarius for a month';
+export const getFinalPrompt = (name: string, isMarried: string, day: string, month: string, year: string, partnerDay: string, partnerMonth: string, partnerYear: string, hasChild: string, futureChildSex: string, futureChildName: string) => {
+  const blueprint = `Imagine you are a astrological consultant. Your name is BabyStar AI. You make a very important horoscope forecast for this year. The main issue our forecast is: given all facts about me bellow to predict when I have a baby. Below are the facts you need to take into accpunt.
+  Given context about me: I am a women. My name is: ${name}. I am: ${isMarried === 'yes' ? 'married' : 'not married'}.
+  I was born ${day} ${month} ${year}. My horoscope sign is: ${getHoroSign(month, +day)}. ${isMarried === 'yes' && 'my partner has next horoscope sign:' + getHoroSign(partnerMonth, +partnerDay)}.
+  He was born ${partnerDay} ${partnerMonth} ${partnerYear}. ${hasChild === 'yes' && 'I already have a child.'}. I also want to have more child it should be a ${futureChildSex === 'yes' ? 'boy' : 'girl'} and I want to give for this child next name: ${futureChildName}.
+  So write foe me horoscope forecast for a year. Every new month should be on a separate paragraph. Describe all spheres of life but give main attention to the ftutre child. Summirize all given info and write me a nice happy horodcope forecast for a year, describe every month separetely. Add at the and: You personal consultant, BabyStar AI.`
+  return blueprint;
 }

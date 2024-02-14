@@ -46,6 +46,18 @@ export const DownloadReport = () => {
       responseType: 'blob',
     })
   }
+  // async function downloadFile() {
+
+  //   return client.get("https://ro.sms.destiny4you.com/getfile", {
+  //     headers: {
+  //       'content-type': '*'
+  //     },
+  //     params: {
+  //       clientDetails: name,
+  //     },
+  //     responseType: 'blob',
+  //   })
+  // }
   return (
     <div className="report-page-container" >
       <div ref={myRef} style={{marginBottom: 10}}>Best astro forecast ever</div>

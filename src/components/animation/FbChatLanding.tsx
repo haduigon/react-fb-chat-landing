@@ -53,6 +53,8 @@ export const FbChatLanding = () => {
   const childYear: string = searchParams.get('yearChild') || '';
   const hasChildren: string = searchParams.get('hasChildren') || '';
   const pixelId: string = searchParams.get('pixelId') || '';
+  const futureChild: string = searchParams.get('futureChild') || '';
+  const futureChildName: string = searchParams.get('futureChildName') || '';
 
   const [question2, setQuestion2] = useState(false);
   const [question4, setQuestion4] = useState(false);
@@ -109,15 +111,42 @@ export const FbChatLanding = () => {
     if (finalPrompt) {
       setIsLoadong(true);
       client.post('chat', {
-        prompt: getFinalPrompt(''),
+        prompt: getFinalPrompt(
+          inputName, isMarried,
+          day,
+          month,
+          year,
+          partnerDay,
+          partnerMonth,
+          partnerYear,
+          hasChildren,
+          futureChild,
+          futureChildName),
         clientDetails: inputName,
       }).then((response: any) => {
         setResponseData(response.data.message);
         dispatch({ type: ACTIONS.SET_FORECAST, payload: response.data.message });
         localStorage.setItem('report', response.data.message);
+
+        
       }).finally(() => setIsLoadong(false))
     }
   }, [finalPrompt]);
+  console.log(state.forecast);
+  console.log(
+    getFinalPrompt(
+      inputName, isMarried,
+      day,
+      month,
+      year,
+      partnerDay,
+      partnerMonth,
+      partnerYear,
+      hasChildren,
+      futureChild,
+      futureChildName), 'final prompt'
+  );
+  
 
   function handleInput(value: string, fieldName: string) {
     if (!value) {
