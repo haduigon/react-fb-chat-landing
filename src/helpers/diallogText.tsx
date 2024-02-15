@@ -29,6 +29,7 @@ export const getFinalPrompt = (name: string, isMarried: string, day: string, mon
   Given context about me: I am a women. My name is: ${name}. I am: ${isMarried === 'yes' ? 'married' : 'not married'}.
   I was born ${day} ${month} ${year}. My horoscope sign is: ${getHoroSign(month, +day)}. ${isMarried === 'yes' && 'my partner has next horoscope sign:' + getHoroSign(partnerMonth, +partnerDay)}.
   He was born ${partnerDay} ${partnerMonth} ${partnerYear}. ${hasChild === 'yes' && 'I already have a child.'}. I also want to have more child it should be a ${futureChildSex === 'yes' ? 'boy' : 'girl'} and I want to give for this child next name: ${futureChildName}.
-  So write foe me horoscope forecast for a year. Every new month should be on a separate paragraph. Describe all spheres of life but give main attention to the ftutre child. Summirize all given info and write me a nice happy horodcope forecast for a year, describe every month separetely. Add at the and: You personal consultant, BabyStar AI.`
+  So write foe me horoscope forecast for a year. Every new month should be on a separate paragraph. Describe all spheres of life but give main attention to the ftutre child. Summirize all given info and write me a nice happy horodcope forecast for a year, describe every month separetely, there should be 12 monthes: 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'.
+  Imagine now is ${new Date().toDateString()}. Add at the and: You personal consultant, BabyStar AI.`
   return blueprint;
 }

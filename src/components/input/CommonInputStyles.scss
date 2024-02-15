@@ -3,6 +3,7 @@
   justify-content: left;
   flex-direction: column;
   margin-left: 15px;
+  height: fit-content;
 }
 
 .input-box {
@@ -12,15 +13,17 @@ position: relative;
 
 .drop {
   position: absolute;
-  top: 40px;
+  // display: block;
+  top: auto;
+  bottom: 100%;
   height: fit-content;
-  max-height: 200px;
+  max-height: 500px;
   width: 100%;
   box-sizing: border-box;
   border: 1px solid lightgray;
   overflow: scroll;
   background-color: #fff;
-  border-radius: 5%;
+  border-radius: 4px;
   margin-bottom: 10px;
 }
 

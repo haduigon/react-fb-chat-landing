@@ -143,6 +143,7 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
                 "redirect": cover,
               })}>
                 {cover && (<div onClick={goToDownload}>Redirect</div>)}
+                {/* {cover && (<Stripe />)} */}
               </div>
             </div>
           }

@@ -5,6 +5,8 @@ import { useCallback, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { CityType } from '../../helpers/types';
+import encodeUtf8 from 'encode-utf8'
 
 type Props = {
   onChange: (event: string, field: string) => void,
@@ -13,6 +15,40 @@ type Props = {
   inputErrorText: string,
   field?: string,
   showEnter: boolean,
+}
+// const cities: any = [...City.getAllCities()];
+
+function compare(a: CityType, b: CityType) {
+  if (a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()) {
+    return -1;
+  }
+  if (a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()) {
+    return 1;
+  }
+  return 0;
+}
+
+function bSearch(array: CityType[], search: string) {
+  let start = 0
+  let end = array.length - 1;
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+
+    if (array[mid].name.substring(0, search.length).toLocaleLowerCase() === (search.toLocaleLowerCase())) {
+
+      return mid;
+    }
+    else if (array[mid].name.substring(0, search.length).toLocaleLowerCase() < search.toLocaleLowerCase()) {
+
+      start = mid + 1;
+    }
+    else {
+
+      end = mid - 1;
+    }
+  }
+
+  return -1;
 }
 
 export const CityInput: React.FC<Props> = ({
@@ -24,46 +60,51 @@ export const CityInput: React.FC<Props> = ({
 }) => {
   const [searchParams] = useSearchParams();
   const [inputValue, setInputValue] = useState('');
-  const cities = City.getAllCities();
+  // const cities: any = [...City.getAllCities()];
   const [hints, setHints] = useState<Array<any>>([]);
   const city2: string = searchParams.get('city') || '';
   const [showHint, setShowHint] = useState(true);
   const myRef = useRef<null | HTMLInputElement>(null);
   const hintsRef = useRef<null | HTMLDivElement>(null);
-
+  console.log(encodeUtf8(inputValue), 'utf');
+  
   useEffect(() => {
-    let foundCity: Array<any> = [];
+    // const cities: any = [...City.getAllCities()];
 
-    if (city2.length > 0) {
-      foundCity = cities.filter(city => city.name.toLowerCase().includes(inputValue.toLowerCase()))
-    }
+    // cities.sort(compare as any)
 
-    setHints(foundCity);
-  }, [city2])
+    // let foundCity: Array<any> = [];
+
+    // if (city2.length >= 3) {
+    //   let res = 0;
+    //   while (res !== -1) {
+    //     res = bSearch(cities, city2)
+
+    //     if (res !== -1) {
+    //       foundCity.push(cities[res]);
+    //       cities.splice(res, 1);
+    //     }
+    //   }
+    // }
+
+    // setHints(foundCity);
+  }, [city2]);
 
   useEffect(() => {
     if (myRef.current) {
       setTimeout(() => {
         myRef.current?.focus();
-      }, 1000)
+      }, 800)
     }
   }, [myRef])
 
-  useEffect(() => {
-    if (hintsRef.current) {
-      setTimeout(() => {
-        hintsRef.current?.scrollIntoView({ behavior: 'smooth' })
-      }, 1000)
-    }
-  }, [])
- 
   function handleInput(event: string) {
     setSearch(event);
     setInputValue(event);
     setShowHint(true);
   }
 
-  function handleClick(value: string, event: React.MouseEvent) {
+  function handleClick(value: string) {
     onChange(value, 'city');
     setInputValue(value);
     setShowHint(false);
@@ -80,24 +121,24 @@ export const CityInput: React.FC<Props> = ({
 
     <div className='input-container'>
       <div className='input-box'>
-        {((inputValue.length > 0) && (showHint)) &&
+        {/* {((inputValue.length >= 3) && (showHint)) &&
           <div className='drop'>
             {hints.map(city => {
               const key = uuidv4();
               return (
                 <div
                   key={key}
-                  style={{cursor: 'pointer'}}
-                  onClick={(event) => handleClick(city.name, event as any)}
+                  style={{ cursor: 'pointer' }}
+                  onClick={(event) => handleClick(city.name)}
                   className="drop-text"
                 >
-                  {city.name} {city.countryCode}        
+                  {city.name} {city.countryCode}
                 </div>
               )
             })}
             <div ref={hintsRef} />
           </div>
-        }
+        } */}
         <input
           value={inputValue}
           className="input is-link custom-font input-box"

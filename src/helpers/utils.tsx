@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import ReactPixel, { AdvancedMatching, fbq } from 'react-facebook-pixel';
+import { CityType } from './types';
 
 export function getHoroSign(month: string, day: number) {
 
@@ -123,3 +124,36 @@ export const Tracker: React.FC<Props> = React.memo((({ pixelId }) => {
     <></>
   )
 }))
+
+export function compare(a: CityType, b: CityType) {
+  if (a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()) {
+    return -1;
+  }
+  if (a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()) {
+    return 1;
+  }
+  return 0;
+}
+
+export function bSearch(array: CityType[], search: string) {
+  let start = 0
+  let end = array.length - 1;
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+
+    if (array[mid].name.substring(0, search.length).toLocaleLowerCase() === (search.toLocaleLowerCase())) {
+
+      return mid;
+    }
+    else if (array[mid].name.substring(0, search.length).toLocaleLowerCase() < search.toLocaleLowerCase()) {
+
+      start = mid + 1;
+    }
+    else {
+
+      end = mid - 1;
+    }
+  }
+
+  return -1;
+}

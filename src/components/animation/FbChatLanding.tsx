@@ -29,6 +29,8 @@ import { CgGirl } from "react-icons/cg";
 import { StateContext } from '../../context/AppContext';
 import { ACTIONS } from '../../helpers/enums';
 import ReactPixel, { AdvancedMatching, fbq } from 'react-facebook-pixel';
+import { City } from 'country-state-city';
+import { CityType } from '../../helpers/types';
 // import { Tracker } from '../../helpers/utils';
 
 type SelectOption = {
@@ -107,12 +109,23 @@ export const FbChatLanding = () => {
   
   }, [])
 
+  // console.log(inputName.toString("utf8"));
+  const encoder = new TextEncoder();
+  const  decoder = new TextDecoder('utf-8');
+  const view = encoder.encode(inputName);
+  const reslt = decoder.decode(view)
+  console.log(view, 'view');
+  console.log(reslt, 'reslt');
+  
+
   useEffect(() => {
     if (finalPrompt) {
       setIsLoadong(true);
       client.post('chat', {
         prompt: getFinalPrompt(
-          inputName, isMarried,
+          inputName,
+          // reslt, 
+          isMarried,
           day,
           month,
           year,
