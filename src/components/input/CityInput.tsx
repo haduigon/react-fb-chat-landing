@@ -69,25 +69,25 @@ export const CityInput: React.FC<Props> = ({
   console.log(encodeUtf8(inputValue), 'utf');
   
   useEffect(() => {
-    // const cities: any = [...City.getAllCities()];
+    const cities: any = [...City.getAllCities()];
 
-    // cities.sort(compare as any)
+    cities.sort(compare as any)
 
-    // let foundCity: Array<any> = [];
+    let foundCity: Array<any> = [];
 
-    // if (city2.length >= 3) {
-    //   let res = 0;
-    //   while (res !== -1) {
-    //     res = bSearch(cities, city2)
+    if (city2.length >= 3) {
+      let res = 0;
+      while (res !== -1) {
+        res = bSearch(cities, city2)
 
-    //     if (res !== -1) {
-    //       foundCity.push(cities[res]);
-    //       cities.splice(res, 1);
-    //     }
-    //   }
-    // }
+        if (res !== -1) {
+          foundCity.push(cities[res]);
+          cities.splice(res, 1);
+        }
+      }
+    }
 
-    // setHints(foundCity);
+    setHints(foundCity);
   }, [city2]);
 
   useEffect(() => {
@@ -121,10 +121,10 @@ export const CityInput: React.FC<Props> = ({
 
     <div className='input-container'>
       <div className='input-box'>
-        {/* {((inputValue.length >= 3) && (showHint)) &&
+        {((inputValue.length >= 3) && (showHint)) &&
           <div className='drop'>
             {hints.map(city => {
-              const key = uuidv4();
+              const key = city.name;
               return (
                 <div
                   key={key}
@@ -138,7 +138,7 @@ export const CityInput: React.FC<Props> = ({
             })}
             <div ref={hintsRef} />
           </div>
-        } */}
+        }
         <input
           value={inputValue}
           className="input is-link custom-font input-box"
@@ -150,9 +150,9 @@ export const CityInput: React.FC<Props> = ({
         />
       </div>
       <div className="center-div">
-        {inputValue.trim().length === 0 && <div style={{ color: 'lightgrey' }}>
+        {inputValue.trim().length === 0 && <div style={{ color: '#8A2BE2' }}>
           {inputErrorText} </div>}
-        <div style={{ color: 'lightgrey' }}>&nbsp;{!showEnter && 'press Enter'}
+        <div style={{ color: '#8A2BE2' }}>&nbsp;{!showEnter && 'press Enter'}
         </div>
       </div>
     </div>

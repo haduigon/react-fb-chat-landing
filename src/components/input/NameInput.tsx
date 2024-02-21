@@ -46,9 +46,9 @@ export const NameInput: React.FC<Props> = ({
         />
       </div>
       <div className="center-div">
-        {inputValue.trim().length === 0 && <div style={{ color: 'lightgrey' }}>
+        {inputValue.trim().length === 0 && <div style={{ color: '#8A2BE2' }}>
           {inputErrorText} </div>}
-        <div style={{ color: 'lightgrey' }}>&nbsp;{!showEnter && 'press Enter'}
+        <div style={{ color: '#8A2BE2' }}>&nbsp;{!showEnter && 'press Enter'}
         </div>
       </div>
     </div>

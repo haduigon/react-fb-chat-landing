@@ -176,6 +176,7 @@ export const FbChatLanding = () => {
       case 'name':
         if (event.key === 'Enter' && inputName.replace(/\s/g, '').length > 0) {
           setQuestion2(true);
+          dispatch({ type: ACTIONS.SET_ONLINE, payload: !state.isOnline })
         }
         break;
       case 'city':
@@ -191,6 +192,8 @@ export const FbChatLanding = () => {
     }
   }
 
+  console.log(state.isOnline, 'isOnline');
+  
   function handleClick(filedName?: string) {
     setQuestion4(true);
   }

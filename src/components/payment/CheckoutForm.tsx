@@ -4,6 +4,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import { useSearchParams } from "react-router-dom";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -11,6 +12,12 @@ export default function CheckoutForm() {
 
   const [message, setMessage] = useState(null) as any;
   const [isLoading, setIsLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const pixelId: string = searchParams.get('pixelId') || '';
+
+
+  const name: string = searchParams.get('name') || '';
+
 
   useEffect(() => {
     if (!stripe) {
@@ -58,7 +65,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Completion page
-        return_url: "https://localhost:3001/#/fb",
+        return_url: `https://ro.destiny4you.com/#/download?name=${name}&pixelId=${pixelId}`,
       },
     });
 

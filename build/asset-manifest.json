@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a4dfbd7c.css",
+    "main.js": "/static/js/main.ade3cf7e.js",
+    "static/media/newCreo2.jpeg": "/static/media/newCreo2.68223bf8d56558fbadf7.jpeg",
+    "static/media/Mont-Regular.otf": "/static/media/Mont-Regular.1d26d89f7339866d3133.otf",
+    "index.html": "/index.html",
+    "main.a4dfbd7c.css.map": "/static/css/main.a4dfbd7c.css.map",
+    "main.ade3cf7e.js.map": "/static/js/main.ade3cf7e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a4dfbd7c.css",
+    "static/js/main.ade3cf7e.js"
+  ]
+}

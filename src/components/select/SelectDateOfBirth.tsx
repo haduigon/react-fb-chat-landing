@@ -17,7 +17,7 @@ export const SelectDateOfBirth: React.FC<Props> = ({ onChange }) => {
 
   const arrayMonth: SelectOption[] = months.map((month) => ({ value: month, label: month, name: 'month' }));
 
-  const arrayYear: SelectOption[] = years.map((year) => ({ value: year, label: year, name: 'year' }));
+  const arrayYear: SelectOption[] = years.map((year) => ({ value: year, label: year, name: 'year' })).reverse();
 
   const selectOptionStyles = {
     cursor: 'pointer',
