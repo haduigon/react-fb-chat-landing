@@ -29,9 +29,7 @@ import { CgGirl } from "react-icons/cg";
 import { StateContext } from '../../context/AppContext';
 import { ACTIONS } from '../../helpers/enums';
 import ReactPixel, { AdvancedMatching, fbq } from 'react-facebook-pixel';
-import { City } from 'country-state-city';
-import { CityType } from '../../helpers/types';
-// import { Tracker } from '../../helpers/utils';
+import ReactGA from 'react-ga4';
 
 type SelectOption = {
   value: string | number | null,
@@ -67,9 +65,6 @@ export const FbChatLanding = () => {
   const [finalPrompt, setFinalPrompt] = useState(false);
   const [responseData, setResponseData] = useState('');
   const [question1, setQuestion1] = useState(false);
-  // const [horoSign, setHoroSign] = useState('');
-  const [pixelTrigger, setPixelTrigger] = useState(false);
-
   const isBithdateSet = (day.length > 0) && (month.length > 0) && (year.length > 0);
   const isPartnerBithdateSet = (partnerDay.length > 0) && (partnerMonth.length > 0) && (partnerYear.length > 0);
   const isChildBithdateSet = (childDay.length > 0) && (childMonth.length > 0) && (childYear.length > 0);
@@ -94,37 +89,48 @@ export const FbChatLanding = () => {
     setSearchParams(params);
     setTimeout(() => {
       setQuestion1(true);
-    }, 8000)
+    }, 8000);
+    ReactGA.initialize("G-W995KS9W3X");
+    ReactGA.send({
+      hitType: "pageview", page: "https://ro.destiny4you.com/#/", title: "ro.destiny4you.com/#/"
+    });
   }, [])
 
   useEffect(() => {
     const advancedMatching = { em: 'some@email.com' };
     const options = {
-      autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
-      debug: true, // enable logs
+      autoConfig: true, 
+      debug: true, 
     };
     ReactPixel.init(pixelId, advancedMatching as AdvancedMatching, options);
    
     ReactPixel.pageView();
   
-  }, [])
+  }, []);
 
-  // console.log(inputName.toString("utf8"));
+  useEffect(() => {
+    if (isBithdateSet) {
+      ReactGA.event({
+        category: "select",
+        action: "select date of birth done",
+        label: "date of birth",
+        value: 1, 
+        nonInteraction: false,
+      });
+    }
+  }, [isBithdateSet]);
+
   const encoder = new TextEncoder();
   const  decoder = new TextDecoder('utf-8');
   const view = encoder.encode(inputName);
-  const reslt = decoder.decode(view)
-  console.log(view, 'view');
-  console.log(reslt, 'reslt');
-  
+  const reslt = decoder.decode(view);
 
   useEffect(() => {
     if (finalPrompt) {
       setIsLoadong(true);
       client.post('chat', {
         prompt: getFinalPrompt(
-          inputName,
-          // reslt, 
+          inputName, 
           isMarried,
           day,
           month,
@@ -145,21 +151,6 @@ export const FbChatLanding = () => {
       }).finally(() => setIsLoadong(false))
     }
   }, [finalPrompt]);
-  console.log(state.forecast);
-  console.log(
-    getFinalPrompt(
-      inputName, isMarried,
-      day,
-      month,
-      year,
-      partnerDay,
-      partnerMonth,
-      partnerYear,
-      hasChildren,
-      futureChild,
-      futureChildName), 'final prompt'
-  );
-  
 
   function handleInput(value: string, fieldName: string) {
     if (!value) {
@@ -176,25 +167,44 @@ export const FbChatLanding = () => {
       case 'name':
         if (event.key === 'Enter' && inputName.replace(/\s/g, '').length > 0) {
           setQuestion2(true);
-          dispatch({ type: ACTIONS.SET_ONLINE, payload: !state.isOnline })
+          dispatch({ type: ACTIONS.SET_ONLINE, payload: !state.isOnline });
+          ReactGA.event({
+            category: "Input",
+            action: "input name done",
+            label: "name",
+            value: 1, 
+            nonInteraction: false,
+          });
         }
         break;
       case 'city':
         if (event.key === 'Enter' && inputName.replace(/\s/g, '').length > 0) {
           setQuestion4(true);
+          ReactGA.event({
+            category: "Input",
+            action: "input city done",
+            label: "city",
+            value: 2, 
+            nonInteraction: false,
+          });
         }
         break;
       case 'futureChildName':
         if (event.key === 'Enter' && inputName.replace(/\s/g, '').length > 0) {
           setFinalPrompt(true);
+          ReactGA.event({
+            category: "Input",
+            action: "input futureChildName done",
+            label: "futureChildName",
+            value: 3, 
+            nonInteraction: false,
+          });
         }
         break;
     }
   }
-
-  console.log(state.isOnline, 'isOnline');
   
-  function handleClick(filedName?: string) {
+  function handleClick() {
     setQuestion4(true);
   }
 
@@ -204,14 +214,26 @@ export const FbChatLanding = () => {
       params.delete(param)
     } else {
       params.set(param, String(value?.value));
+      ReactGA.event({
+        category: `${param}`,
+        action: `${param} : ${value}`,
+        label: `${param}`,
+      });
     }
 
     setSearchParams(params);
   }
 
   function handleChange(data: string, fieldName: string) {
+        ReactGA.event({
+        category: `${fieldName}`,
+        action: `${fieldName} : ${data}`,
+        label: `${fieldName}`,
+      });
+  
     if (fieldName === 'isMarried') {
       setQuestion5(true);
+
     }
     if (fieldName === 'hasChildren') {
       setQuestion6(true);
@@ -225,7 +247,6 @@ export const FbChatLanding = () => {
   return (
 
     <div>
-      {/* <Tracker pixelId={pixelId} /> */}
 
       <FbAll text={intro} />
 

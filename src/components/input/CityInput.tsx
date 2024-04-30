@@ -4,9 +4,10 @@ import { City } from 'country-state-city';
 import { useCallback, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { CityType } from '../../helpers/types';
-import encodeUtf8 from 'encode-utf8'
+import ReactGA from 'react-ga4';
+
+ReactGA.initialize("G-W995KS9W3X");
 
 type Props = {
   onChange: (event: string, field: string) => void,
@@ -16,7 +17,6 @@ type Props = {
   field?: string,
   showEnter: boolean,
 }
-// const cities: any = [...City.getAllCities()];
 
 function compare(a: CityType, b: CityType) {
   if (a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()) {
@@ -60,13 +60,11 @@ export const CityInput: React.FC<Props> = ({
 }) => {
   const [searchParams] = useSearchParams();
   const [inputValue, setInputValue] = useState('');
-  // const cities: any = [...City.getAllCities()];
   const [hints, setHints] = useState<Array<any>>([]);
   const city2: string = searchParams.get('city') || '';
   const [showHint, setShowHint] = useState(true);
   const myRef = useRef<null | HTMLInputElement>(null);
   const hintsRef = useRef<null | HTMLDivElement>(null);
-  console.log(encodeUtf8(inputValue), 'utf');
   
   useEffect(() => {
     const cities: any = [...City.getAllCities()];

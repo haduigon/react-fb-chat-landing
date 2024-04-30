@@ -12,7 +12,7 @@ export const Header = () => {
 
   return (
     <div className="header">
-      <div>
+     <div>
         <FaArrowLeft color="#6495ED" size={24} />
       </div>
       <div style={{ marginLeft: 10 }}>

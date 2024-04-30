@@ -5,6 +5,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { useSearchParams } from "react-router-dom";
+import ReactGA from 'react-ga4';
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -12,11 +13,15 @@ export default function CheckoutForm() {
 
   const [message, setMessage] = useState(null) as any;
   const [isLoading, setIsLoading] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, _setSearchParams] = useSearchParams();
   const pixelId: string = searchParams.get('pixelId') || '';
 
 
   const name: string = searchParams.get('name') || '';
+
+  useEffect(() => {
+    ReactGA.initialize("G-W995KS9W3X");
+  }, []);
 
 
   useEffect(() => {
@@ -53,6 +58,11 @@ export default function CheckoutForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    ReactGA.event({
+      category: `PAID`,
+      action: `IT SHOULD BE PAID`,
+      label: `PAID REDIRECT TO DOWNLOAD`,
+    });
 
     if (!stripe || !elements) {
 
@@ -91,7 +101,7 @@ export default function CheckoutForm() {
       }, 2000)
 
     }
-  }, [])
+  }, []);
 
   return (
     <form id="payment-form" onSubmit={handleSubmit} ref={payRef} style={{width: 250, padding: 0}}>

@@ -2,10 +2,8 @@ import * as React from 'react';
 import { Radio } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
 import { useState } from 'react';
-// import { GiSwordwoman, GiSwordman } from "react-icons/gi";
 import './CustomCheckBoxes.scss';
 import { useSearchParams } from 'react-router-dom';
-// import { CheckBoxContent } from '../../helpers/types';
 
 type Props = {
   onChange: (event: string, filed: string) => void,
