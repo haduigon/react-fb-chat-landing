@@ -22,7 +22,7 @@ export const SelectDateOfBirth: React.FC<Props> = ({ onChange }) => {
   const selectOptionStyles = {
     cursor: 'pointer',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
   };
 
   return (

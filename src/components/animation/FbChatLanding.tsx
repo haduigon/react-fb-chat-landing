@@ -1,5 +1,5 @@
 import { FbAll, FbAnimation } from './FbAnimation';
-import { memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { NameInput } from "../input/NameInput";
 import { useSearchParams } from 'react-router-dom';
 import { CheckboxDouble } from '../checkbox/CustomCheckBoxes';
@@ -28,7 +28,7 @@ import { TbMoodBoy } from "react-icons/tb";
 import { CgGirl } from "react-icons/cg";
 import { StateContext } from '../../context/AppContext';
 import { ACTIONS } from '../../helpers/enums';
-import ReactPixel, { AdvancedMatching, fbq } from 'react-facebook-pixel';
+import ReactPixel, { AdvancedMatching } from 'react-facebook-pixel';
 import ReactGA from 'react-ga4';
 
 type SelectOption = {
@@ -94,7 +94,7 @@ export const FbChatLanding = () => {
     ReactGA.send({
       hitType: "pageview", page: "https://ro.destiny4you.com/#/", title: "ro.destiny4you.com/#/"
     });
-  }, [])
+  }, []);
 
   useEffect(() => {
     const advancedMatching = { em: 'some@email.com' };

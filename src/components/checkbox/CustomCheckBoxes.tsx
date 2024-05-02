@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Radio } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
-import { useState } from 'react';
 import './CustomCheckBoxes.scss';
 import { useSearchParams } from 'react-router-dom';
 

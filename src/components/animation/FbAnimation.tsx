@@ -4,7 +4,7 @@ import { StateContext } from "../../context/AppContext";
 import { ACTIONS } from "../../helpers/enums";
 import classNames from 'classnames';
 import { Stripe } from "../payment/Stripe";
-import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 type Props = {
   text: string | ReactNode,
