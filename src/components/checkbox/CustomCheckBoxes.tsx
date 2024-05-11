@@ -3,6 +3,8 @@ import { Radio } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
 import './CustomCheckBoxes.scss';
 import { useSearchParams } from 'react-router-dom';
+import { withNamespaces } from 'react-i18next';
+import { TFunction } from "i18next";
 
 type Props = {
   onChange: (event: string, filed: string) => void,
@@ -11,10 +13,11 @@ type Props = {
   text3?: string,
   icon1?: React.ReactNode,
   icon2?: React.ReactNode,
-  field: string
+  field: string,
+  t?: TFunction
 }
 
-export const CheckboxDouble: React.FC<Props> = ({ onChange, text, icon1, icon2, text2, text3, field }) => {
+export const CheckboxDouble: React.FC<Props> = ({ onChange, text, icon1, icon2, text2, text3, field, t }) => {
 
   const [searchParams, _setSearchParams] = useSearchParams();
 

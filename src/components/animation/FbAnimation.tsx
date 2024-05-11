@@ -49,13 +49,16 @@ export const FbMessage: React.FC<Props> = ({ text, child }) => {
     }
   }, []);
 
+  console.log(typeof text, 'typeoftext');
+  
+
   return (
     <div ref={myRef}>
       <div className='message-block'>
         <div className='custom-icon mt100'></div>
         <div id="wave" style={{ marginTop: 10 }}>
           <span className="srtextarea"></span>
-          <span className="srfriendzone custom-font">
+          <span className="srfriendzone custom-font ">
             <span className="" style={{ maxHeight: 500 }}>
               {text}
             </span>
@@ -78,7 +81,8 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
   const myFinalRef = useRef<null | HTMLDivElement>(null);
   const { state, dispatch } = useContext(StateContext);
   const [searchParams] = useSearchParams();
-  const name = searchParams.get('name')
+  const name = searchParams.get('name');
+
   useEffect(() => {
     if (myFinalRef.current) {
       setTimeout(() => {

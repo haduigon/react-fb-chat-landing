@@ -30,6 +30,14 @@ import { StateContext } from '../../context/AppContext';
 import { ACTIONS } from '../../helpers/enums';
 import ReactPixel, { AdvancedMatching } from 'react-facebook-pixel';
 import ReactGA from 'react-ga4';
+// import i18next from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+// import { TFunction } from "i18next";
+// import translationEN from '../../locales/dialogEng.json';
+// import { withNamespaces } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
+import i18n from '../../helpers/i18n';
+
 
 type SelectOption = {
   value: string | number | null,
@@ -37,7 +45,11 @@ type SelectOption = {
   name: string,
 }
 
-export const FbChatLanding = () => {
+// type Props = {
+//   t?: TFunction,
+// }
+
+export const FbChatLanding: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const params = new URLSearchParams(searchParams);
   const inputName: string = searchParams.get('name') || '';
@@ -69,6 +81,41 @@ export const FbChatLanding = () => {
   const isPartnerBithdateSet = (partnerDay.length > 0) && (partnerMonth.length > 0) && (partnerYear.length > 0);
   const isChildBithdateSet = (childDay.length > 0) && (childMonth.length > 0) && (childYear.length > 0);
   const { state, dispatch } = useContext(StateContext);
+
+  const i18nextOptions = {
+    order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
+    lookupQuerystring: 'lng',
+    lookupCookie: 'i18next',
+    lookupLocalStorage: 'i18nextLng',
+    lookupSessionStorage: 'i18nextLng',
+
+    // cache user language
+    caches: ['localStorage'],
+    excludeCacheFor: ['cimode'],
+    //cookieMinutes: 10,
+    //cookieDomain: 'myDomain'
+  };
+  const languageDetector = new LanguageDetector(null, i18nextOptions);
+  // languageDetector.init(i18nextOptions);
+  // const resLang = languageDetector.detect()
+
+  // const lang = i18next.use(LanguageDetector).init(i18nextOptions);
+//   i18next.use(LanguageDetector).init({
+//   supportedLngs: ['en', 'ro'],
+//   ...i18nextOptions
+// });
+  // console.log(lang, 'lang');
+
+  console.log(languageDetector.detect(), 'languageDetector');
+  
+  const newJson = JSON.stringify([
+    "Illuminate your unique journey—clarify if you stand solitary in this celestial dance or if celestial companions accompany you.",
+    "Are you entwined in the dance of married life / partnership?",
+    "Do you revel in the art of solo living?",
+  ]);
+  console.log(newJson, 'newJson');
+  // i18next.use(LanguageDetector)
+
 
   useEffect(() => {
     params.delete('day');
@@ -120,10 +167,10 @@ export const FbChatLanding = () => {
     }
   }, [isBithdateSet]);
 
-  const encoder = new TextEncoder();
-  const  decoder = new TextDecoder('utf-8');
-  const view = encoder.encode(inputName);
-  const reslt = decoder.decode(view);
+  // const encoder = new TextEncoder();
+  // const  decoder = new TextDecoder('utf-8');
+  // const view = encoder.encode(inputName);
+  // const reslt = decoder.decode(view);
 
   useEffect(() => {
     if (finalPrompt) {
@@ -242,14 +289,19 @@ export const FbChatLanding = () => {
       setQuestion7(true);
     }
     handleInput(data, fieldName)
-  }
+  }  
+
+  console.log(i18n.t('intro'), firstQuestion, 'introooo');
+  
 
   return (
 
     <div>
 
-      <FbAll text={intro} />
-
+      <FbAll text={i18n.t('intro')} />
+      
+        {/* <div >{i18n.t('intro')}</div> */}
+     
       {question1 &&
         <FbAll
           text={firstQuestion}

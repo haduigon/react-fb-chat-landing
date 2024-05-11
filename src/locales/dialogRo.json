@@ -1,0 +1,24 @@
+{
+  "intro": "Vă prezentăm BabyStar, o versiune de neegalat a AI creată cu meticulozitate pentru a dezlega conexiunile ascunse dintre factorii aparent nelegați, inclusiv data nașterii, căsătoria, locul nașterii și pozițiile cerești ale stelelor. Misiunea noastră este să oferim o înțelegere mai profundă a caracterului și a destinului unui copil. Cu informații culese din analiza a miliarde de previziuni și a căilor de viață a milioane de oameni, am colaborat cu astrologi de top din întreaga lume, servindu-ne drept mentorii noștri stimați. Analizele noastre conduc adesea la concluzii neașteptate și perspicace. Nu ratați ocazia - încercați-o acum!",
+  "firstQuestion": "Unlock the cosmic whispers: As we delve into the realms of personalized horoscope forecasts, reveal your name and let the stars craft a tale.",
+  "secondQuestion": "to unveil the mysteries of your personalized horoscope forecast, whisper to the stars by selecting your date of birth. What celestial revelations await?",
+  "thirdQuestion": "As we navigate the intricate realms of personalized horoscope forecasts, share the city of your birth, and let the stars paint a vivid portrait of the cosmic energies shaping your destiny. Where did the dance of your life begin?",
+  "fourthQuestion": [
+    "Illuminate your unique journey—clarify if you stand solitary in this celestial dance or if celestial companions accompany you.",
+    "Are you entwined in the dance of married life / partnership?",
+    "Do you revel in the art of solo living?"
+  ],
+  "fifthQuestion": [
+    "Have you already welcomed children into your life's story?",
+    "Already blessed with children",
+    "Yet to embark on the journey of parenthood"
+  ],
+  "fifthQuestionWithPartner": "In the realm of personalised horoscope forecasts, illuminate the cosmic canvas by revealing the date of birth of your husband or partner. Unveil the celestial mysteries that shape your shared destiny.",
+  "questionSixIfHasChild": "Please, provide the birthdate of your first child. This will enable us to tailor insightful celestial forecasts to your unique parenting experience.",
+  "questionSeven": [
+    "As you imagine your future child, considering the astrological mysteries, do you lean towards a preference for a son or a daughter?",
+    "Yearning for a heavenly son",
+    "Longing for a cosmic daughter"
+  ],
+  "questionEightFutureName" : "Have you already woven dreams around the name of your future child? If so, whisper it into our celestial realm"
+}
