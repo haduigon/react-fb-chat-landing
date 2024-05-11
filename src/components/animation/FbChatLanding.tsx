@@ -7,9 +7,9 @@ import { SelectDateOfBirth } from '../select/SelectDateOfBirth';
 import { SingleValue } from "react-select";
 import { client } from '../../helpers/utils';
 import {
-  intro,
+  // intro,
   firstQuestion,
-  secondQuestion,
+  // secondQuestion,
   thirdQuestion,
   fourthQuestion,
   fifthQuestion,
@@ -30,7 +30,6 @@ import { StateContext } from '../../context/AppContext';
 import { ACTIONS } from '../../helpers/enums';
 import ReactPixel, { AdvancedMatching } from 'react-facebook-pixel';
 import ReactGA from 'react-ga4';
-import LanguageDetector from 'i18next-browser-languagedetector';
 import i18n from '../../helpers/i18n';
 
 
@@ -72,32 +71,6 @@ export const FbChatLanding: React.FC = () => {
   const isPartnerBithdateSet = (partnerDay.length > 0) && (partnerMonth.length > 0) && (partnerYear.length > 0);
   const isChildBithdateSet = (childDay.length > 0) && (childMonth.length > 0) && (childYear.length > 0);
   const { state, dispatch } = useContext(StateContext);
-
-  const i18nextOptions = {
-    order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
-    lookupQuerystring: 'lng',
-    lookupCookie: 'i18next',
-    lookupLocalStorage: 'i18nextLng',
-    lookupSessionStorage: 'i18nextLng',
-
-    // cache user language
-    caches: ['localStorage'],
-    excludeCacheFor: ['cimode'],
-    //cookieMinutes: 10,
-    //cookieDomain: 'myDomain'
-  };
-  const languageDetector = new LanguageDetector(null, i18nextOptions);
-
-  console.log(languageDetector.detect(), 'languageDetector');
-  
-  const newJson = JSON.stringify([
-    "Illuminate your unique journey—clarify if you stand solitary in this celestial dance or if celestial companions accompany you.",
-    "Are you entwined in the dance of married life / partnership?",
-    "Do you revel in the art of solo living?",
-  ]);
-  console.log(newJson, 'newJson');
-  // i18next.use(LanguageDetector)
-
 
   useEffect(() => {
     params.delete('day');
@@ -148,11 +121,6 @@ export const FbChatLanding: React.FC = () => {
       });
     }
   }, [isBithdateSet]);
-
-  // const encoder = new TextEncoder();
-  // const  decoder = new TextDecoder('utf-8');
-  // const view = encoder.encode(inputName);
-  // const reslt = decoder.decode(view);
 
   useEffect(() => {
     if (finalPrompt) {
@@ -286,7 +254,7 @@ export const FbChatLanding: React.FC = () => {
      
       {question1 &&
         <FbAll
-          text={firstQuestion}
+          text={i18n.t('firstQuestion')}
           child={<NameInput
             onChange={(event) => handleInput(event.target.value, 'name')}
             onKeyDown={handleKeyDown}
@@ -299,7 +267,7 @@ export const FbChatLanding: React.FC = () => {
 
       {question2 &&
         <FbAll
-          text={`${inputName}, ${secondQuestion}`}
+          text={`${inputName}, ${i18n.t('secondQuestion')}`}
           child={<SelectDateOfBirth onChange={handleSelectParam} />}
         />
       }

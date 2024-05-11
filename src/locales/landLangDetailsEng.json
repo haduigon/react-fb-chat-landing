@@ -1,6 +1,6 @@
 {
   "BabyStar AI": "BabyStar AI",
-  "Input your name and press Enter": "Input your name and press Enter",
+  "Input your name and": "Input your name and",
   "BabyStar AI is typing": "BabyStar AI is typing",
   "day" : "day",
   "month": "month",
@@ -17,7 +17,8 @@
   "October": "October", 
   "November": "November", 
   "December": "December",
-  "Input your city and press Enter": " Input your city and press Enter",
-  "Input child name and press Enter": "Input child name and press Enter",
-  "Read whole forecast": "Read whole forecast"
+  "Input your city and": " Input your city and",
+  "Input child name and": "Input child name and",
+  "Read whole forecast": "Read whole forecast",
+  "press Enter": "press Enter"
 }

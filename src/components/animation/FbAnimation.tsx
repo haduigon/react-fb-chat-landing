@@ -49,7 +49,7 @@ export const FbMessage: React.FC<Props> = ({ text, child }) => {
     }
   }, []);
 
-  console.log(typeof text, 'typeoftext');
+  // console.log(typeof text, 'typeoftext');
   
 
   return (
@@ -64,7 +64,6 @@ export const FbMessage: React.FC<Props> = ({ text, child }) => {
             </span>
           </span>
           <p className="" />
-          {/* </p> */}
         </div>
       </div>
       <div style={{ marginLeft: '65px' }}>{child}</div>
@@ -79,7 +78,7 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
   const [showChild, setShowChild] = useState(false);
   const myRef = useRef<null | HTMLDivElement>(null);
   const myFinalRef = useRef<null | HTMLDivElement>(null);
-  const { state, dispatch } = useContext(StateContext);
+  const { dispatch } = useContext(StateContext);
   const [searchParams] = useSearchParams();
   const name = searchParams.get('name');
 
@@ -125,10 +124,10 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
   const customTime = `${time.getHours()} : ${time.getMinutes()}`;
 
   const navigate = useNavigate();
-  const goToDownload = () => navigate({
-    pathname: "/download",
-    search: `?name=${name}`
-  })
+  // const goToDownload = () => navigate({
+  //   pathname: "/download",
+  //   search: `?name=${name}`
+  // })
 
   return (
     <div ref={myFinalRef}>
