@@ -30,12 +30,7 @@ import { StateContext } from '../../context/AppContext';
 import { ACTIONS } from '../../helpers/enums';
 import ReactPixel, { AdvancedMatching } from 'react-facebook-pixel';
 import ReactGA from 'react-ga4';
-// import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-// import { TFunction } from "i18next";
-// import translationEN from '../../locales/dialogEng.json';
-// import { withNamespaces } from 'react-i18next';
-// import { useTranslation } from 'react-i18next';
 import i18n from '../../helpers/i18n';
 
 
@@ -44,10 +39,6 @@ type SelectOption = {
   label: string | number,
   name: string,
 }
-
-// type Props = {
-//   t?: TFunction,
-// }
 
 export const FbChatLanding: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -96,15 +87,6 @@ export const FbChatLanding: React.FC = () => {
     //cookieDomain: 'myDomain'
   };
   const languageDetector = new LanguageDetector(null, i18nextOptions);
-  // languageDetector.init(i18nextOptions);
-  // const resLang = languageDetector.detect()
-
-  // const lang = i18next.use(LanguageDetector).init(i18nextOptions);
-//   i18next.use(LanguageDetector).init({
-//   supportedLngs: ['en', 'ro'],
-//   ...i18nextOptions
-// });
-  // console.log(lang, 'lang');
 
   console.log(languageDetector.detect(), 'languageDetector');
   
