@@ -1,24 +1,24 @@
 {
-  "intro": "Vă prezentăm BabyStar, o versiune de neegalat a AI creată cu meticulozitate pentru a dezlega conexiunile ascunse dintre factorii aparent nelegați, inclusiv data nașterii, căsătoria, locul nașterii și pozițiile cerești ale stelelor. Misiunea noastră este să oferim o înțelegere mai profundă a caracterului și a destinului unui copil. Cu informații culese din analiza a miliarde de previziuni și a căilor de viață a milioane de oameni, am colaborat cu astrologi de top din întreaga lume, servindu-ne drept mentorii noștri stimați. Analizele noastre conduc adesea la concluzii neașteptate și perspicace. Nu ratați ocazia - încercați-o acum!",
-  "firstQuestion": "Unlock the cosmic whispers: As we delve into the realms of personalized horoscope forecasts, reveal your name and let the stars craft a tale.",
-  "secondQuestion": "to unveil the mysteries of your personalized horoscope forecast, whisper to the stars by selecting your date of birth. What celestial revelations await?",
-  "thirdQuestion": "As we navigate the intricate realms of personalized horoscope forecasts, share the city of your birth, and let the stars paint a vivid portrait of the cosmic energies shaping your destiny. Where did the dance of your life begin?",
+  "intro": "Prezentăm BabyStar, o versiune fără egal a inteligenței artificiale meticulos elaborată pentru a dezvălui conexiunile ascunse dintre factori aparent neînruditi, inclusiv datele de naștere, căsătoria, locul de naștere și pozițiile cerești ale stelelor. Misiunea noastră este de a oferi o înțelegere mai profundă a caracterului și destinului unui copil. Cu înțelegeri dobândite din analiza a miliarde de previziuni și a traiectoriilor de viață ale milioane, am colaborat cu cei mai buni astrologi din întreaga lume, care ne-au servit ca mentori de seamă. Analizele noastre duc adesea la concluzii neașteptate și insightful. Nu ratați oportunitatea - încercați acum!",
+  "firstQuestion": "Deschideți șoaptele cosmice: Pe măsură ce ne adâncim în domeniile previziunilor de horoscop personalizate, dezvăluiți-vă numele și lăsați stelele să țeasă o poveste.",
+  "secondQuestion": "Pentru a dezvălui misteriile previziunii tale personalizate de horoscop, șoptește stelelor selectând data ta de naștere. Ce revelații cerești te așteaptă?",
+  "thirdQuestion": "Pe măsură ce navigăm în lumea intricate a previziunilor personalizate de horoscop, împărtășește orașul în care te-ai născut, și lasă stelele să picteze un portret viu al energiilor cosmice care îți modelează destinul. Unde a început dansul vieții tale?",
   "fourthQuestion": [
-    "Illuminate your unique journey—clarify if you stand solitary in this celestial dance or if celestial companions accompany you.",
-    "Are you entwined in the dance of married life / partnership?",
-    "Do you revel in the art of solo living?"
+    "Illuminează-ți călătoria unică - clarifică dacă stai singur în acest dans cereștial sau dacă te însoțesc companioni cerești.",
+    "Ești împletit în dansul vieții maritale / parteneriale?",
+    "Te bucuri de arta vieții în singurătate?"
   ],
   "fifthQuestion": [
-    "Have you already welcomed children into your life's story?",
-    "Already blessed with children",
-    "Yet to embark on the journey of parenthood"
+    "Ai deja copii în povestea vieții tale?",
+    "Binecuvântat(ă) deja cu copii.",
+    "Încă să începi călătoria părintelui."
   ],
-  "fifthQuestionWithPartner": "In the realm of personalised horoscope forecasts, illuminate the cosmic canvas by revealing the date of birth of your husband or partner. Unveil the celestial mysteries that shape your shared destiny.",
-  "questionSixIfHasChild": "Please, provide the birthdate of your first child. This will enable us to tailor insightful celestial forecasts to your unique parenting experience.",
+  "fifthQuestionWithPartner": "În domeniul previziunilor de horoscop personalizate, iluminează pânza cosmică dezvăluind data de naștere a soțului sau partenerului tău. Dezvăluie misterele cerești care modelează destinul vostru comun.",
+  "questionSixIfHasChild": "Te rog, furnizează data de naștere a primului tău copil. Acest lucru ne va permite să adaptăm previziunile cerești într-un mod informat la experiența unică de părinte a ta.",
   "questionSeven": [
-    "As you imagine your future child, considering the astrological mysteries, do you lean towards a preference for a son or a daughter?",
-    "Yearning for a heavenly son",
-    "Longing for a cosmic daughter"
+    "Pe măsură ce îți imaginezi viitorul copil, luând în considerare misterele astrologice, te îndrepți mai degrabă către o preferință pentru un fiu sau o fiică?",
+    "Dorindu-ți un fiu ceresc.",
+    "Dorindu-ți o fiică cosmică."
   ],
-  "questionEightFutureName" : "Have you already woven dreams around the name of your future child? If so, whisper it into our celestial realm"
+  "questionEightFutureName" : "Ai deja țesut vise în jurul numelui viitorului tău copil? Dacă da, șoptește-l în regatul nostru cerești."
 }
