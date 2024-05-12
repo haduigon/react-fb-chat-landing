@@ -1,9 +1,8 @@
 import i18n from "i18next";
 import detector from "i18next-browser-languagedetector";
 import { reactI18nextModule } from "react-i18next";
-import translationEN from '../locales/dialogEng.json';
-import translationRo from '../locales/dialogRo.json';
-// console.log(translationEN, 'transl');
+import translationEN from '../locales/localeEN.json';
+import translationRo from '../locales/localeRO.json';
 
 const resources = {
   en: {
@@ -19,12 +18,12 @@ i18n
   .use(reactI18nextModule as any)
   .init({
     resources,
-    fallbackLng: "en", // use en if detected lng is not available
+    fallbackLng: "en",
 
-    keySeparator: false, // we do not use keys in form messages.welcome
+    keySeparator: false,
 
     interpolation: {
-      escapeValue: false // react already safes from xss
+      escapeValue: false,
     }
   });
 

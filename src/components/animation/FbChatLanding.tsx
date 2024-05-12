@@ -7,9 +7,6 @@ import { SelectDateOfBirth } from '../select/SelectDateOfBirth';
 import { SingleValue } from "react-select";
 import { client } from '../../helpers/utils';
 import {
-  // intro,
-  firstQuestion,
-  // secondQuestion,
   thirdQuestion,
   fourthQuestion,
   fifthQuestion,
@@ -31,7 +28,7 @@ import { ACTIONS } from '../../helpers/enums';
 import ReactPixel, { AdvancedMatching } from 'react-facebook-pixel';
 import ReactGA from 'react-ga4';
 import i18n from '../../helpers/i18n';
-
+import LanguageDetector from 'i18next-browser-languagedetector';
 
 type SelectOption = {
   value: string | number | null,
@@ -122,6 +119,8 @@ export const FbChatLanding: React.FC = () => {
     }
   }, [isBithdateSet]);
 
+  let currentLang = new LanguageDetector().detect() as string;
+
   useEffect(() => {
     if (finalPrompt) {
       setIsLoadong(true);
@@ -137,14 +136,13 @@ export const FbChatLanding: React.FC = () => {
           partnerYear,
           hasChildren,
           futureChild,
-          futureChildName),
-        clientDetails: inputName,
+          futureChildName,
+          currentLang),
+          clientDetails: inputName,
       }).then((response: any) => {
         setResponseData(response.data.message);
         dispatch({ type: ACTIONS.SET_FORECAST, payload: response.data.message });
-        localStorage.setItem('report', response.data.message);
-
-        
+        localStorage.setItem('report', response.data.message);     
       }).finally(() => setIsLoadong(false))
     }
   }, [finalPrompt]);
@@ -239,18 +237,13 @@ export const FbChatLanding: React.FC = () => {
       setQuestion7(true);
     }
     handleInput(data, fieldName)
-  }  
-
-  console.log(i18n.t('intro'), firstQuestion, 'introooo');
-  
+  }
 
   return (
 
     <div>
 
       <FbAll text={i18n.t('intro')} />
-      
-        {/* <div >{i18n.t('intro')}</div> */}
      
       {question1 &&
         <FbAll
@@ -258,7 +251,7 @@ export const FbChatLanding: React.FC = () => {
           child={<NameInput
             onChange={(event) => handleInput(event.target.value, 'name')}
             onKeyDown={handleKeyDown}
-            inputErrorText='Input your name and'
+            inputErrorText={i18n.t('Input your name and')}
             field='name'
             showEnter={question2}
           />}

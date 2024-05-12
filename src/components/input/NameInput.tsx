@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './CommonInputStyles.scss';
+import i18n from '../../helpers/i18n';
 
 type Props = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
@@ -48,7 +49,7 @@ export const NameInput: React.FC<Props> = ({
       <div className="center-div">
         {inputValue.trim().length === 0 && <div style={{ color: '#8A2BE2' }}>
           {inputErrorText} </div>}
-        <div style={{ color: '#8A2BE2' }}>&nbsp;{!showEnter && 'press Enter'}
+        <div style={{ color: '#8A2BE2' }}>&nbsp;{!showEnter && i18n.t('press Enter')}
         </div>
       </div>
     </div>

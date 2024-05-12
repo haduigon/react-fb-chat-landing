@@ -3,7 +3,6 @@ import { Radio } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
 import './CustomCheckBoxes.scss';
 import { useSearchParams } from 'react-router-dom';
-import { withNamespaces } from 'react-i18next';
 import { TFunction } from "i18next";
 
 type Props = {

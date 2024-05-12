@@ -54,7 +54,8 @@ export const getFinalPrompt = (
   partnerYear: string,
   hasChild: string,
   futureChildSex: string,
-  futureChildName: string
+  futureChildName: string,
+  language: string,
 ) => {
   const blueprint = ` REDUCE YOUR ANSWER(COMPLETION) BELLOW 3500 TOKENS ! Imagine you are a astrological consultant. Your name is BabyStar AI. You make a very important horoscope forecast for this year. The main issue our forecast is: given all facts about me bellow to predict when I have a baby. Below are the facts you need to take into accpunt.
   Given context about me: I am a women. My name is: ${name}. I am: ${
@@ -75,6 +76,6 @@ export const getFinalPrompt = (
   } and I want to give for this child next name: ${futureChildName}.
    So write foe me horoscope forecast for a year. Every new month should be on a separate paragraph.
    Describe all spheres of life but give main attention to the ftutre child. Summirize all given info and write me a nice happy horodcope forecast for a year, describe every month separetely, there should be 12 monthes: 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'.
-  Imagine now is ${new Date().toDateString()}. REDUCE YOUR ANSWER(COMPLETION) BELLOW 3500 TOKENS ! Add at the and: You personal consultant, BabyStar AI.`;
+  Imagine now is ${new Date().toDateString()}. REDUCE YOUR ANSWER(COMPLETION) BELLOW 3500 TOKENS ! Add at the and: You personal consultant, BabyStar AI. ${language !== 'en' && 'TRANSLATE WHOLE FORECAST ON ROMANIAN LANGUAGE'}`;
   return blueprint;
 };

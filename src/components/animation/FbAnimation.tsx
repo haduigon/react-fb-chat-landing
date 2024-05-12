@@ -4,7 +4,10 @@ import { StateContext } from "../../context/AppContext";
 import { ACTIONS } from "../../helpers/enums";
 import classNames from 'classnames';
 import { Stripe } from "../payment/Stripe";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import {
+  useSearchParams
+} from "react-router-dom";
+import i18n from '../../helpers/i18n';
 
 type Props = {
   text: string | ReactNode,
@@ -27,7 +30,7 @@ export const FbAnimation: React.FC = () => {
         <div id="wave">
           <span className="srtextarea"></span>
           <span className="srfriendzone custom-font">
-            BabyStar AI is typing
+            {i18n.t('BabyStar AI is typing')}
           </span>
           <span className="dot one"></span>
           <span className="dot two"></span>
@@ -48,9 +51,6 @@ export const FbMessage: React.FC<Props> = ({ text, child }) => {
       myRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, []);
-
-  // console.log(typeof text, 'typeoftext');
-  
 
   return (
     <div ref={myRef}>
@@ -123,7 +123,7 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
 
   const customTime = `${time.getHours()} : ${time.getMinutes()}`;
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const goToDownload = () => navigate({
   //   pathname: "/download",
   //   search: `?name=${name}`
