@@ -7,13 +7,6 @@ import { SelectDateOfBirth } from '../select/SelectDateOfBirth';
 import { SingleValue } from "react-select";
 import { client } from '../../helpers/utils';
 import {
-  thirdQuestion,
-  fourthQuestion,
-  fifthQuestion,
-  fifthQuestionWithPartner,
-  questionSeven,
-  questionSixIfHasChild,
-  questionEightFutureName,
   getFinalPrompt,
 } from '../../helpers/diallogText';
 import { CityInput } from '../input/CityInput';
@@ -68,6 +61,10 @@ export const FbChatLanding: React.FC = () => {
   const isPartnerBithdateSet = (partnerDay.length > 0) && (partnerMonth.length > 0) && (partnerYear.length > 0);
   const isChildBithdateSet = (childDay.length > 0) && (childMonth.length > 0) && (childYear.length > 0);
   const { state, dispatch } = useContext(StateContext);
+
+  const fourthQuestion: Array<string> = i18n.t('fourthQuestion', { returnObjects: true });
+  const fifthQuestion: Array<string> = i18n.t('fifthQuestion', { returnObjects: true });
+  const questionSeven: Array<string> = i18n.t('questionSeven', { returnObjects: true });
 
   useEffect(() => {
     params.delete('day');
@@ -267,12 +264,12 @@ export const FbChatLanding: React.FC = () => {
 
       {isBithdateSet &&
         <FbAll
-          text={thirdQuestion}
+          text={i18n.t('thirdQuestion')}
           child={<CityInput
             onChange={handleInput}
             onKeyDown={handleKeyDown}
             onClick={handleClick}
-            inputErrorText='Input your city and'
+            inputErrorText={i18n.t('Input your city and')}
             showEnter={question4}
           />}
         />
@@ -311,7 +308,7 @@ export const FbChatLanding: React.FC = () => {
 
       {(question5 && isMarried === 'yes') &&
         <FbAll
-          text={fifthQuestionWithPartner}
+          text={i18n.t('fifthQuestionWithPartner')}
           child={
             <SelectDateOfBirth onChange={(event: SingleValue<SelectOption>) => handleSelectParam(event, `${event?.name}Partner`)} />
           }
@@ -336,7 +333,7 @@ export const FbChatLanding: React.FC = () => {
 
       {(question6 && hasChildren === 'yes') &&
         <FbAll
-          text={questionSixIfHasChild}
+          text={i18n.t('questionSixIfHasChild')}
           child={
             <SelectDateOfBirth onChange={(event: SingleValue<SelectOption>) => handleSelectParam(event, `${event?.name}Child`)} />
           }
@@ -377,12 +374,12 @@ export const FbChatLanding: React.FC = () => {
 
       {question7 &&
         <FbAll
-          text={questionEightFutureName}
+          text={i18n.t('questionEightFutureName')}
           child={
             <NameInput
               onChange={(event) => handleInput(event.target.value, 'futureChildName')}
               onKeyDown={handleKeyDown}
-              inputErrorText="Input child name and"
+              inputErrorText={i18n.t('Input child name and')}
               field="futureChildName"
               showEnter={finalPrompt}
               placeholder='Michelle'

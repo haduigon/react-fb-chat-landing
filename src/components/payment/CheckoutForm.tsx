@@ -6,6 +6,8 @@ import {
 } from "@stripe/react-stripe-js";
 import { useSearchParams } from "react-router-dom";
 import ReactGA from 'react-ga4';
+import ReactPixel from 'react-facebook-pixel';
+import i18n from '../../helpers/i18n';
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -58,6 +60,7 @@ export default function CheckoutForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    ReactPixel.track('Purchase');
     ReactGA.event({
       category: `PAID`,
       action: `IT SHOULD BE PAID`,
@@ -109,7 +112,7 @@ export default function CheckoutForm() {
       <PaymentElement id="payment-element" options={paymentElementOptions as any} />
       <button disabled={isLoading || !stripe || !elements} id="submit" >
         <span id="button-text custom-font" >
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Read whole forecast"}
+          {isLoading ? <div className="spinner" id="spinner"></div> : i18n.t("Read whole forecast")}
         </span>
       </button>
       {message && <div id="payment-message">{message}</div>}

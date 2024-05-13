@@ -110,13 +110,12 @@ export const Tracker: React.FC<Props> = React.memo((({ pixelId }) => {
   useEffect(() => {
     const advancedMatching = { em: 'some@email.com' };
     const options = {
-      autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
-      debug: true, // enable logs
+      autoConfig: true, 
+      debug: true,
     };
     ReactPixel.init("530232662524472", advancedMatching as AdvancedMatching, options);
    
     ReactPixel.pageView();
-    console.log('tracker works');
     
   }, [])
 

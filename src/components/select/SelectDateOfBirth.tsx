@@ -1,6 +1,7 @@
 import { days, months, years } from '../../helpers/dates';
 import './SelectDateOfBirth.scss';
 import Select, { SingleValue } from "react-select";
+import i18n from '../../helpers/i18n';
 
 type SelectOption = {
   value: string | number | null,
@@ -15,7 +16,9 @@ export const SelectDateOfBirth: React.FC<Props> = ({ onChange }) => {
 
   const arrayDay: SelectOption[] = days.map((day) => ({ value: day, label: day, name: 'day' }));
 
-  const arrayMonth: SelectOption[] = months.map((month) => ({ value: month, label: month, name: 'month' }));
+  const arrayMonth: SelectOption[] = months.map((month) => {
+    return ({ value: month, label: i18n.t(month), name: month })
+  });
 
   const arrayYear: SelectOption[] = years.map((year) => ({ value: year, label: year, name: 'year' })).reverse();
 
@@ -41,7 +44,7 @@ export const SelectDateOfBirth: React.FC<Props> = ({ onChange }) => {
           }}
           menuPlacement="top"
           onChange={(event) => onChange(event, event?.name || '')}
-          placeholder="day"
+          placeholder={i18n.t('day')}
           isSearchable={false}
         />
       </div>
@@ -58,7 +61,7 @@ export const SelectDateOfBirth: React.FC<Props> = ({ onChange }) => {
           menuPlacement="top"
           options={arrayMonth}
           onChange={(event) => onChange(event, 'month')}
-          placeholder="month"
+          placeholder={i18n.t('month')}
           isSearchable={false}
         />
       </div>
@@ -75,7 +78,7 @@ export const SelectDateOfBirth: React.FC<Props> = ({ onChange }) => {
           }}
           menuPlacement="top"
           onChange={(event) => onChange(event, 'year')}
-          placeholder="year"
+          placeholder={i18n.t('year')}
           isSearchable={false}
         />
       </div>

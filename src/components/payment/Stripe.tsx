@@ -5,6 +5,7 @@ import CheckoutForm from "./CheckoutForm";
 import "./stripe.scss";
 import { client } from "../../helpers/utils";
 import ReactGA from 'react-ga4';
+import i18n from '../../helpers/i18n';
 
 const stripePromise = loadStripe("pk_live_51OP1pEIDi1lKDmgLtS21cdqmc6EMw2M5iFaVXV8mk970Nln9y34U4SgzYFu1zQVxyvbDc5QvCe3u8S4gma16bGM600EuOW1dm4");
 
@@ -49,7 +50,7 @@ export const Stripe: React.FC = () => {
 
   return (
     <div style={{ marginLeft: 0, width: 250 }}>
-      <button onClick={handlePrepaidClick}>Read whole forecast</button>
+      <button onClick={handlePrepaidClick}>{i18n.t('Read whole forecast')}</button>
       {showPayForm && (
         <div className="custom-font">
           <div style={{color: 'black'}} className="center-div">2$ dollars</div>
