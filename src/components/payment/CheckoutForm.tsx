@@ -18,7 +18,6 @@ export default function CheckoutForm() {
   const [searchParams, _setSearchParams] = useSearchParams();
   const pixelId: string = searchParams.get('pixelId') || '';
 
-
   const name: string = searchParams.get('name') || '';
 
   useEffect(() => {
