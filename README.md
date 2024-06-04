@@ -1,6 +1,12 @@
-FB Chat
+**FB Chat**
+
+A few pieces of code imitate a Facebook chat quiz with a ChatGPT request and payment request at the end. Message animation and message appearance may be used commonly or separately. You can customize everything: images, questions, text content, GPT prompts, etc. You pass your own element as props. Feel free to use, improve, and discuss it
 
 fb_chat_landing
+
+_Status:_
+
+Feel free to suggest any improvements.
 
 [![GitHub license](https://img.shields.io/github/license/haduigon/fb_horo_chat_landing)](https://github.com/haduigon/fb_horo_chat_landing/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/haduigon/fb_horo_chat_landing)](https://github.com/haduigon/fb_horo_chat_landing/stargazers)
@@ -15,3 +21,7 @@ Screenshots are bellow:
 <img width="1792" alt="Screenshot_FB_CHAT2" src="https://github.com/haduigon/fb_horo_chat_landing/assets/20277989/d78d533e-354b-4ee9-a5fc-86c194af5da3">
 <img width="1792" alt="Screenshot_FB_CHAT" src="https://github.com/haduigon/fb_horo_chat_landing/assets/20277989/7f2a9749-aa76-4814-85e9-c6c18a8273d8">
 </details>
+
+What I used:
+
+
