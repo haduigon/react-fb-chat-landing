@@ -24,5 +24,21 @@ Screenshots are bellow:
 
 What I used:
 
-React-router-dom
-React
+[![React Context](https://img.shields.io/badge/React%20Context-16.x-blue)](https://reactjs.org/docs/context.html)
+
+Usage is extremely simple:
+
+_npm i_
+
+_npm start_
+
+Pass component as a child and use different languages.
+
+    <FbAll
+      text={`${inputName}, ${i18n.t('secondQuestion')}`}
+      child={<SelectDateOfBirth onChange={handleSelectParam} />}
+    />
+
+This is a simple, fully completed commercial project. It has been a great experience for me and an amazing team effort. I have utilized many new technologies and a few libraries, successfully resolving several cumbersome issues. Additionally, I implemented a multi-language landing page using i18next.
+
+
