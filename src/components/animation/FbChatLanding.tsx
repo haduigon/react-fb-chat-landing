@@ -108,9 +108,6 @@ export const FbChatLanding: React.FC = () => {
     };
     ReactPixel.init(pixelId, advancedMatching as AdvancedMatching, options);
     ReactPixel.pageView();
-    // const px = () => ReactPixel.pageView();
-    // px();
-    // return px();
   }, []);
 
   useEffect(() => {

@@ -76,7 +76,6 @@ export default function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Completion page
         return_url: `https://ro.destiny4you.com/#/download?name=${name}&pixelId=${pixelId}`,
       },
     });

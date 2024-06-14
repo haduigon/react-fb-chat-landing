@@ -24,13 +24,11 @@ export const NameInput: React.FC<Props> = ({
   const inputValue: string = searchParams.get(field) || '';
   const myRef = useRef<null | HTMLInputElement>(null);
 
-
-
   useEffect(() => {
     if (myRef.current) {
       myRef.current.focus();
     }
-  }, [myRef])
+  }, [myRef]);
 
   return (
 

@@ -1,11 +1,10 @@
-**FB Chat**
+**React fb chat**
 
 # _Description:_
 
-A few pieces of code imitate a Facebook chat quiz with a ChatGPT request and payment request at the end. Message animation and message appearance may be used commonly or separately. You can customize everything: images, questions, text content, GPT prompts, etc. You can download pdf response. Project has simple Node js backend which is described You pass your own element as props. Feel free to use, improve, and discuss it
+Developed for mobile and tablets. A few pieces of code imitate a Facebook chat quiz with a ChatGPT request and payment request at the end. Message animation and message appearance may be used commonly or separately. You can customize everything: images, questions, text content, GPT prompts, etc. You can download pdf response. Project has simple Node js backend which is described in Reflection. You pass your own element as props. Feel free to use, improve, and discuss it
 
 # [Demolink](https:) i do not have a stripe keys here, bellow you have a fully working link where you can toss me a panny :)
-
 
 # _Status:_
 
@@ -14,8 +13,11 @@ In progress
 Feel free to suggest any improvements.
 
 [![GitHub license](https://img.shields.io/github/license/haduigon/fb_horo_chat_landing)](https://github.com/haduigon/fb_horo_chat_landing/blob/master/LICENSE)
+
 [![GitHub stars](https://img.shields.io/github/stars/haduigon/fb_horo_chat_landing)](https://github.com/haduigon/fb_horo_chat_landing/stargazers)
+
 [![GitHub issues](https://img.shields.io/github/issues/haduigon/fb_horo_chat_landing)](https://github.com/haduigon/fb_horo_chat_landing/issues)
+
 [![GitHub forks](https://img.shields.io/github/forks/haduigon/fb_horo_chat_landing)](https://github.com/haduigon/fb_horo_chat_landing/network)
 
 # _Screenshots are bellow:_
@@ -39,7 +41,26 @@ Feel free to suggest any improvements.
 
 [![Axios](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
 
-EXTEND
+[![Bulma](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+
+[![pretty-checkbox-react](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+
+[![i18next](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+
+[![@stripe/react-stripe-js](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+
+[![react-ga4](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+
+[![react-facebook-pixel](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+
+[![classnames](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+
+[![react-select](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+
+[![react-icons](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+
+[![js-file-download](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+
 
 # React phone catalog features:
 
@@ -60,4 +81,4 @@ Pass component as a child and use different languages.
 
 # Reflection
 
-This is a simple, fully completed commercial project. It has been a great experience for me and an amazing team effort. I have utilized many new technologies and a few libraries for selct, input, etc. Successfully resolving several cumbersome issues. Additionally, I implemented a multi-language landing page using i18next. As a backend I wrote a simple script which get a request from client with a prompt, send it to openai api, get the response, create pdf file with content, save it and if you pay returns you a link for download. Probably, I will upload it little bit later. Project was deployed by my own on VPS Debian, using SSL.
+This is a simple, fully completed commercial project. It has been a great experience for me and an amazing team effort. I have utilized many new technologies and a few libraries for selct, input, etc. Successfully resolving several cumbersome issues. Additionally, I implemented a multi-language landing page using i18next. As a backend I wrote a simple script which get a request from client with a prompt, send it to openai api, get the response, create pdf file with content, save it and if you pay returns you a link for download. Probably, I will upload it little bit later. Project was deployed by my own on VPS Debian, using SSL. Feel free to improve my code and let me know about it %)

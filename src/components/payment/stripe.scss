@@ -33,7 +33,6 @@ form {
   margin-bottom: 24px;
 }
 
-/* Buttons and links */
 button {
   background: #5469d4;
   font-family: Arial, sans-serif;
@@ -59,7 +58,6 @@ button:disabled {
   cursor: default;
 }
 
-/* spinner/processing state, errors */
 .spinner,
 .spinner:before,
 .spinner:after {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
-import ReactPixel, { AdvancedMatching, fbq } from 'react-facebook-pixel';
+import ReactPixel, { AdvancedMatching } from 'react-facebook-pixel';
 import { CityType } from './types';
 
 export function getHoroSign(month: string, day: number) {

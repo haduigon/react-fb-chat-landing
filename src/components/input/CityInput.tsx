@@ -69,7 +69,7 @@ export const CityInput: React.FC<Props> = ({
   useEffect(() => {
     const cities: any = [...City.getAllCities()];
 
-    cities.sort(compare as any)
+    cities.sort(compare as any);
 
     let foundCity: Array<any> = [];
 
@@ -94,7 +94,7 @@ export const CityInput: React.FC<Props> = ({
         myRef.current?.focus();
       }, 800)
     }
-  }, [myRef])
+  }, [myRef]);
 
   function handleInput(event: string) {
     setSearch(event);

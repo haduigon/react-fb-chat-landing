@@ -21,7 +21,6 @@ export const DownloadReport = () => {
 
   const pixelId: string = searchParams.get('pixelId') || '';
 
-
   async function getFile() {
     const response = await downloadFile();
     const content = response.headers['content-type'];
@@ -31,18 +30,18 @@ export const DownloadReport = () => {
   useEffect(() => {
     const advancedMatching = { em: 'some@email.com' };
     const options = {
-      autoConfig: true, 
-      debug: true, 
+      autoConfig: true,
+      debug: true,
     };
     ReactPixel.init(pixelId, advancedMatching as AdvancedMatching, options);
-    ReactPixel.track('Purchase', {currency: "USD", value: 2.00});
+    ReactPixel.track('Purchase', { currency: "USD", value: 2.00 });
 
-    if(myRef.current) {
+    if (myRef.current) {
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: "smooth" })
       }, 200)
     }
-  }, [])
+  }, []);
 
   async function downloadFile() {
 
