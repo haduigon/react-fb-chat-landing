@@ -25,10 +25,10 @@ Feel free to suggest any improvements.
 # _Screenshots are bellow:_
 
 <details>
-<img width="1792" alt="Screenshot_FB_CHAT4" src="https://github.com/haduigon/react-fb-chat-landing/assets/20277989/93d7e933-1aca-4042-8e63-c15ff333efbd">
-<img width="1792" alt="Screenshot_FB_CHAT3" src="https://github.com/haduigon/react-fb-chat-landing/assets/20277989/b724cab7-ae06-421a-a1a7-53125bdea1f4">
-<img width="1792" alt="Screenshot_FB_CHAT2" src="https://github.com/haduigon/react-fb-chat-landing/assets/20277989/d78d533e-354b-4ee9-a5fc-86c194af5da3">
-<img width="1792" alt="Screenshot_FB_CHAT" src="https://github.com/haduigon/react-fb-chat-landing/assets/20277989/7f2a9749-aa76-4814-85e9-c6c18a8273d8">
+<img width="1792" alt="Screenshot_FB_CHAT4" src="https://github.com/haduigon/react-fb-chat-landiing/assets/20277989/cdcfb9c0-db01-4ff2-a630-8dad0c8589e5">
+<img width="1792" alt="Screenshot_FB_CHAT3" src="https://github.com/haduigon/react-fb-chat-landiing/assets/20277989/7df7f200-bf55-40fd-aaf6-6a5d05c9ae65">
+<img width="1792" alt="Screenshot_FB_CHAT2" src="https://github.com/haduigon/react-fb-chat-landiing/assets/20277989/7be020da-ddf6-4703-8b42-63f4ec9138d3">
+<img width="1792" alt="Screenshot_FB_CHAT" src="https://github.com/haduigon/react-fb-chat-landiing/assets/20277989/7fffaf04-17b9-45a1-bb96-3dad326bb8aa">
 </details>
 
 # Technologies list:
