@@ -4,7 +4,7 @@
 
 Developed for mobile and tablets. A few pieces of code imitate a Facebook chat quiz with a ChatGPT request and payment request at the end. Message animation and message appearance may be used commonly or separately. You can customize everything: images, questions, text content, GPT prompts, etc. You can download pdf response. Project has simple Node js backend which is described in Reflection. You pass your own element as props. Feel free to use, improve, and discuss it
 
-# [Demolink](https://haduigon.github.io/fb-horo-chat-landing/#/) i do not have a stripe keys here bellow you have a fully working link where you can toss me a penny :)
+# [Demolink](https://haduigon.github.io/react-fb-chat-landing/#/) i do not have a stripe keys here bellow you have a fully working link where you can toss me a penny :)
 
 [Deployed](https://ro.destiny4you.com)
 
@@ -14,21 +14,21 @@ In progress
 
 Feel free to suggest any improvements.
 
-[![GitHub license](https://img.shields.io/github/license/haduigon/fb_horo_chat_landing)](https://github.com/haduigon/fb_horo_chat_landing/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/haduigon/react-fb-chat-landing)](https://github.com/haduigon/react-fb-chat-landing/blob/master/LICENSE)
 
-[![GitHub stars](https://img.shields.io/github/stars/haduigon/fb_horo_chat_landing)](https://github.com/haduigon/fb_horo_chat_landing/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/haduigon/react-fb-chat-landing)](https://github.com/haduigon/react-fb-chat-landing/stargazers)
 
-[![GitHub issues](https://img.shields.io/github/issues/haduigon/fb_horo_chat_landing)](https://github.com/haduigon/fb_horo_chat_landing/issues)
+[![GitHub issues](https://img.shields.io/github/issues/haduigon/react-fb-chat-landing)](https://github.com/haduigon/react-fb-chat-landing/issues)
 
-[![GitHub forks](https://img.shields.io/github/forks/haduigon/fb_horo_chat_landing)](https://github.com/haduigon/fb_horo_chat_landing/network)
+[![GitHub forks](https://img.shields.io/github/forks/haduigon/react-fb-chat-landing)](https://github.com/haduigon/react-fb-chat-landing/network)
 
 # _Screenshots are bellow:_
 
 <details>
-<img width="1792" alt="Screenshot_FB_CHAT4" src="https://github.com/haduigon/fb_horo_chat_landing/assets/20277989/93d7e933-1aca-4042-8e63-c15ff333efbd">
-<img width="1792" alt="Screenshot_FB_CHAT3" src="https://github.com/haduigon/fb_horo_chat_landing/assets/20277989/b724cab7-ae06-421a-a1a7-53125bdea1f4">
-<img width="1792" alt="Screenshot_FB_CHAT2" src="https://github.com/haduigon/fb_horo_chat_landing/assets/20277989/d78d533e-354b-4ee9-a5fc-86c194af5da3">
-<img width="1792" alt="Screenshot_FB_CHAT" src="https://github.com/haduigon/fb_horo_chat_landing/assets/20277989/7f2a9749-aa76-4814-85e9-c6c18a8273d8">
+<img width="1792" alt="Screenshot_FB_CHAT4" src="https://github.com/haduigon/react-fb-chat-landing/assets/20277989/93d7e933-1aca-4042-8e63-c15ff333efbd">
+<img width="1792" alt="Screenshot_FB_CHAT3" src="https://github.com/haduigon/react-fb-chat-landing/assets/20277989/b724cab7-ae06-421a-a1a7-53125bdea1f4">
+<img width="1792" alt="Screenshot_FB_CHAT2" src="https://github.com/haduigon/react-fb-chat-landing/assets/20277989/d78d533e-354b-4ee9-a5fc-86c194af5da3">
+<img width="1792" alt="Screenshot_FB_CHAT" src="https://github.com/haduigon/react-fb-chat-landing/assets/20277989/7f2a9749-aa76-4814-85e9-c6c18a8273d8">
 </details>
 
 # Technologies list:
