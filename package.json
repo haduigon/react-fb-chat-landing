@@ -68,6 +68,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-transform-private-property-in-object": "^7.24.7",
     "@types/lodash.debounce": "^4.0.9",
     "gh-pages": "^6.1.1"
   }

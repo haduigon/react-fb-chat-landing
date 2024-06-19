@@ -4,7 +4,7 @@
 
 Developed for mobile and tablets. A few pieces of code imitate a Facebook chat quiz with a ChatGPT request and payment request at the end. Message animation and message appearance may be used commonly or separately. You can customize everything: images, questions, text content, GPT prompts, etc. You can download pdf response. Project has simple Node js backend which is described in Reflection. You pass your own element as props. Feel free to use, improve, and discuss it
 
-# [Demolink](https:) i do not have a stripe keys here, bellow you have a fully working link where you can toss me a panny :)
+# [Demolink](https://haduigon.github.io/test-repo-for-deploy/#/) i do not have a stripe keys here, bellow you have a fully working link where you can toss me a penny :)
 
 # _Status:_
 
@@ -31,40 +31,57 @@ Feel free to suggest any improvements.
 
 # Technologies list:
 
-[![React](https://img.shields.io/badge/React-18.3.1-green)](https://react.dev/)
+[![React](https://img.shields.io/badge/React-18.2.0-green)](https://react.dev/)
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.4.5-green)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-green)](https://www.typescriptlang.org/)
 
-[![React-router-dom](https://img.shields.io/badge/React%20Router%20Dom-6.23.1-yellow)](https://reactrouter.com/en/main)
+[![React-router-dom](https://img.shields.io/badge/React%20Router%20Dom-18.2.0-yellow)](https://reactrouter.com/en/main)
 
-[![React Context](https://img.shields.io/badge/React%20Context-0.0.3-blue)](https://reactjs.org/docs/context.html)
+[![React Context](https://img.shields.io/badge/React%20Context-grey)](https://reactjs.org/docs/context.html)
 
-[![Axios](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+[![Axios](https://img.shields.io/badge/Axios-1.6.7-orange)](https://axios.com)
 
-[![Bulma](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+[![Bulma](https://img.shields.io/badge/Bulma-0.9.4-lightgreen)](https://bulma.io)
 
-[![pretty-checkbox-react](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+[![pretty-checkbox-react](https://img.shields.io/badge/Pretty%20checkbox%20react-3.2.0-pink)](https://pretty-checkbox-react.netlify.app/)
 
-[![i18next](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+[![i18next](https://img.shields.io/badge/i18next-23.11.3-green)](https://www.i18next.com/)
 
-[![@stripe/react-stripe-js](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+[![@stripe/react-stripe-js](https://img.shields.io/badge/React%20stripe%20js-2.4.0-purple)](https://docs.stripe.com/stripe-js/react)
 
-[![react-ga4](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+[![react-ga4](https://img.shields.io/badge/React%20GA4-2.1.0-orange)](https://www.npmjs.com/package/react-ga4)
 
-[![react-facebook-pixel](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+[![react-facebook-pixel](https://img.shields.io/badge/React%20Facebook%20Pixel-0.0.30-blue)](https://www.npmjs.com/package/react-facebook-pixel)
 
-[![classnames](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+[![classnames](https://img.shields.io/badge/Classnames-2..1-lightgreen)](https://www.npmjs.com/package/classnames)
 
-[![react-select](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+[![react-select](https://img.shields.io/badge/React%20Select-5.0.1-yellow)](https://react-select.com/home)
 
-[![react-icons](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+[![react-icons](https://img.shields.io/badge/React%20Icons-5.0.1-green)](https://react-icons.github.io/react-icons/)
 
-[![js-file-download](https://img.shields.io/badge/Axios-18.3.1-orange)](https://axios.com)
+[![js-file-download](https://img.shields.io/badge/Js%20file%20download-0.4.12-orange)](https://www.npmjs.com/package/js-file-download)
 
 
-# React phone catalog features:
+# React FB chat landing features:
 
 FEATURES
+Fb chat landing has them next:
+
+- chat imitation, pay attention to green dot down the top avatar picture.
+  
+- a lot of libraries are used.
+  
+- elements are passed as a props. btw, can at be considered as the high order component? 👨‍🦲
+
+- all questions gather in one prompt and sending to openai api at the end
+
+- stripe payment implemented
+
+- you can download what you`ve got
+
+- i18next translation implemented, just add new lang text data and its identifier.
+
+- a liitle openai api is used in backend as a stripe as well.
 
 # _Usage as always is very simple:_
 
