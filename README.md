@@ -4,7 +4,9 @@
 
 Developed for mobile and tablets. A few pieces of code imitate a Facebook chat quiz with a ChatGPT request and payment request at the end. Message animation and message appearance may be used commonly or separately. You can customize everything: images, questions, text content, GPT prompts, etc. You can download pdf response. Project has simple Node js backend which is described in Reflection. You pass your own element as props. Feel free to use, improve, and discuss it
 
-# [Demolink](https://haduigon.github.io/test-repo-for-deploy/#/) i do not have a stripe keys here, bellow you have a fully working link where you can toss me a penny :)
+# [Demolink](https://haduigon.github.io/test-repo-for-deploy/#/) i do not have a stripe keys here bellow you have a fully working link where you can toss me a penny :)
+
+[Deployed](https://ro.destiny4you.com)
 
 # _Status:_
 
