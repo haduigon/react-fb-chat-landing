@@ -15,8 +15,17 @@ type Props = {
   cover?: boolean,
 }
 
-export const FbAnimation: React.FC = () => {
+type AnimationProps = {
+  text?: 'BabyStar AI is forming forecast. It can take some time' | undefined,
+}
+
+export const FbAnimation: React.FC<AnimationProps> = ({ text }) => {
   const myRef = useRef<null | HTMLDivElement>(null);
+
+  const animationText = text ? text : 'BabyStar AI is typing';
+
+  // console.log(text, animationText, 'animationText in fb animation');
+  
   useEffect(() => {
     if (myRef.current) {
       myRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -30,7 +39,7 @@ export const FbAnimation: React.FC = () => {
         <div id="wave">
           <span className="srtextarea"></span>
           <span className="srfriendzone custom-font">
-            {i18n.t('BabyStar AI is typing')}
+            {i18n.t(animationText)}
           </span>
           <span className="dot one"></span>
           <span className="dot two"></span>
@@ -123,12 +132,6 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
 
   const customTime = `${time.getHours()} : ${time.getMinutes()}`;
 
-  // const navigate = useNavigate();
-  // const goToDownload = () => navigate({
-  //   pathname: "/download",
-  //   search: `?name=${name}`
-  // })
-
   return (
     <div ref={myFinalRef}>
       {showMessage && <div className="message-time">{customTime}</div>}
@@ -145,7 +148,6 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
               <div className={classNames({
                 "redirect": cover,
               })}>
-                {/* {cover && (<div onClick={goToDownload}>Redirect</div>)} */}
                 {cover && (<Stripe />)}
               </div>
             </div>

@@ -2,17 +2,20 @@ import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './CommonInputStyles.scss';
 import i18n from '../../helpers/i18n';
+import React from 'react';
 
 type Props = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>, filedName: string) => void,
-  inputErrorText: string,
-  field: string,
-  showEnter: boolean,
-  placeholder?: string
+  inputErrorText?: string | undefined,
+  field?: string | undefined,
+  showEnter?: boolean | undefined,
+  placeholder?: string | undefined
 }
 
-export const NameInput: React.FC<Props> = ({
+let count = 0;
+
+export const NameInput: React.FC<Props> = React.memo(({
   onChange,
   onKeyDown,
   inputErrorText,
@@ -21,7 +24,7 @@ export const NameInput: React.FC<Props> = ({
   placeholder="Lilu Dallas",
 }) => {
   const [searchParams] = useSearchParams();
-  const inputValue: string = searchParams.get(field) || '';
+  const inputValue: string  = searchParams.get(field as any) || '';
   const myRef = useRef<null | HTMLInputElement>(null);
 
   useEffect(() => {
@@ -30,18 +33,21 @@ export const NameInput: React.FC<Props> = ({
     }
   }, [myRef]);
 
+  console.log('name input render', count++);
+  
+
   return (
 
     <div className='input-container'>
       <div className='input-box'>
         <input
-          value={inputValue}
+          // value={inputValue}
           className="input is-link custom-font input-box"
           type="text"
           placeholder={placeholder}
           onChange={(event) => onChange(event)}
           ref={myRef}
-          onKeyDown={(event) => onKeyDown(event, field)}
+          onKeyDown={(event) => onKeyDown(event, field as any)}
         />
       </div>
       <div className="center-div">
@@ -52,4 +58,4 @@ export const NameInput: React.FC<Props> = ({
       </div>
     </div>
   )
-}
+})

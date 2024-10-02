@@ -22,7 +22,7 @@
   ],
   "questionEightFutureName" : "Have you already woven dreams around the name of your future child? If so, whisper it into our celestial realm",
   "BabyStar AI": "BabyStar AI",
-  "Input your name and": "Input your name and",
+  "Type your name and": "Type your name and",
   "BabyStar AI is typing": "BabyStar AI is typing",
   "day" : "day",
   "month": "month",
@@ -39,8 +39,9 @@
   "October": "October", 
   "November": "November", 
   "December": "December",
-  "Input your city and": " Input your city and",
-  "Input child name and": "Input child name and",
+  "Type your city and": " Type your city and",
+  "Type child name and": "Type child name and",
   "Read whole forecast": "Read whole forecast",
-  "press Enter": "press Enter"
+  "press Enter": "press Enter",
+  "BabyStar AI is forming forecast. It can take some time" : "BabyStar AI is forming forecast. It can take some time"
 }

@@ -8,6 +8,7 @@ import { useSearchParams } from "react-router-dom";
 import ReactGA from 'react-ga4';
 import ReactPixel from 'react-facebook-pixel';
 import i18n from '../../helpers/i18n';
+import pwdStripe from '../../assets/icons/pwdStripe.png';
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -114,6 +115,9 @@ export default function CheckoutForm() {
         </span>
       </button>
       {message && <div id="payment-message">{message}</div>}
+            <div className="mt-10 logo-box">
+        <img src={pwdStripe} className="logo-img"/>
+      </div>
     </form>
   );
 }

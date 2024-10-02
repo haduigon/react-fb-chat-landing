@@ -6,17 +6,21 @@ import {
 import { App } from './App';
 import { DownloadReport } from './components/download/DownloadReport';
 import { FbChatLanding } from './components/animation/FbChatLanding';
-import { AppContextProvider } from './context/AppContext';
+import { AppContextProvider, QuizContextProvider } from './context/AppContext';
+// import { FacebookPixel2 } from './components/FacebookPixel/FacebookPixel';
 
 export const Root = () => (
   <HashRouter>
     <AppContextProvider>
+      <QuizContextProvider>
+      {/* <FacebookPixel2 /> */}
       <Routes>
         <Route path="/" element={<App />} >
           <Route index element={<FbChatLanding />} />
           <Route path="download" element={<DownloadReport />} />
         </Route>
-      </Routes>
+        </Routes>
+        </QuizContextProvider>
     </AppContextProvider>
   </HashRouter>
 )

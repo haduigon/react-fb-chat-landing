@@ -43,9 +43,14 @@ body {
   margin-bottom: 10px;
 }
 
+.mt-10 {
+  margin-top: 10px;
+}
+
 .center-div {
   display: flex;
   justify-content: center;
+  // max-width: 250px;
 }
 
 .custom-icon {

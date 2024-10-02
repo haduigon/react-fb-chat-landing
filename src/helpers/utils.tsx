@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import ReactPixel, { AdvancedMatching } from "react-facebook-pixel";
 import { CityType } from "./types";
+import { StateContext } from "../context/AppContext";
 
 export function getHoroSign(month: string, day: number) {
   let horoSign = "";
@@ -109,4 +110,11 @@ export function bSearch(array: CityType[], search: string) {
   }
 
   return -1;
+}
+
+export function useGetContextState() {
+  const { state } = useContext(StateContext);
+
+  const newValue = state.isOnline;
+  return newValue;
 }

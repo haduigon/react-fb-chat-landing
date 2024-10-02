@@ -57,7 +57,7 @@ export const getFinalPrompt = (
   futureChildName: string,
   language: string,
 ) => {
-  const blueprint = ` REDUCE YOUR ANSWER(COMPLETION) BELLOW 3500 TOKENS ! Imagine you are a astrological consultant. Your name is BabyStar AI. You make a very important horoscope forecast for this year. The main issue our forecast is: given all facts about me bellow to predict when I have a baby. Below are the facts you need to take into accpunt.
+  const blueprint = ` REDUCE YOUR ANSWER(COMPLETION) BELLOW 3500 TOKENS ! Imagine you are a astrological consultant. Your name is BabyStar AI. You make a very important horoscope forecast for this year. The main issue our forecast is: given all facts about me bellow to predict when I have a baby. Below are the facts you need to take into account.
   Given context about me: I am a women. My name is: ${name}. I am: ${
     isMarried === "yes" ? "married" : "not married"
   }.

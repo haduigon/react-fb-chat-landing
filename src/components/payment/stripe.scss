@@ -117,6 +117,17 @@ button:disabled {
   flex-direction: column;
 }
 
+.logo-img {
+  width: 40%;
+  height: 3lvh;
+}
+
+.logo-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @keyframes loading {
   0% {
     -webkit-transform: rotate(0deg);

@@ -1,4 +1,4 @@
-import { days, months, years } from '../../helpers/dates';
+import { days, months, years, kidYears } from '../../helpers/dates';
 import './SelectDateOfBirth.scss';
 import Select, { SingleValue } from "react-select";
 import i18n from '../../helpers/i18n';
@@ -10,17 +10,20 @@ type SelectOption = {
 }
 type Props = {
   onChange: (value: SingleValue<SelectOption>, param: string) => void,
+  takeKidsYears?: boolean
 }
 
-export const SelectDateOfBirth: React.FC<Props> = ({ onChange }) => {
+export const SelectDateOfBirth: React.FC<Props> = ({ onChange,takeKidsYears }) => {
 
   const arrayDay: SelectOption[] = days.map((day) => ({ value: day, label: day, name: 'day' }));
 
   const arrayMonth: SelectOption[] = months.map((month) => {
-    return ({ value: month, label: i18n.t(month), name: month })
+    return ({ value: month, label: i18n.t(month), name: 'month' })
   });
 
-  const arrayYear: SelectOption[] = years.map((year) => ({ value: year, label: year, name: 'year' })).reverse();
+  const arrayYear: SelectOption[] = takeKidsYears
+    ? kidYears.map((year) => ({ value: year, label: year, name: 'year' })).reverse()
+    : years.map((year) => ({ value: year, label: year, name: 'year' })).reverse();
 
   const selectOptionStyles = {
     cursor: 'pointer',

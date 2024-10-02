@@ -1,5 +1,5 @@
 import { FbAll, FbAnimation } from "./FbAnimation";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { NameInput } from "../input/NameInput";
 import { useSearchParams } from "react-router-dom";
 import { CheckboxDouble } from "../checkbox/CustomCheckBoxes";
@@ -14,12 +14,17 @@ import { FaChildren } from "react-icons/fa6";
 import { GrRestroomWomen } from "react-icons/gr";
 import { TbMoodBoy } from "react-icons/tb";
 import { CgGirl } from "react-icons/cg";
-import { StateContext } from "../../context/AppContext";
-import { ACTIONS } from "../../helpers/enums";
-import ReactPixel, { AdvancedMatching } from "react-facebook-pixel";
+import { QuizContext, StateContext } from "../../context/AppContext";
+import { QUIZ_ACTIONS, ACTIONS } from "../../helpers/enums";
+// import ReactPixel, { AdvancedMatching } from "react-facebook-pixel";
 import ReactGA from "react-ga4";
 import i18n from "../../helpers/i18n";
 import LanguageDetector from "i18next-browser-languagedetector";
+import debounce from "lodash.debounce";
+import { InputFileds } from "../../helpers/types";
+// import CheckoutForm from "../payment/CheckoutForm";
+// import { Stripe } from "../payment/Stripe";
+// import { InputFileds } from "../../helpers/types";
 
 type SelectOption = {
   value: string | number | null;
@@ -29,7 +34,9 @@ type SelectOption = {
 
 export const FbChatLanding: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const params = new URLSearchParams(searchParams);
+  // const params = new URLSearchParams(searchParams);
+    const params = useMemo(() => new URLSearchParams(searchParams), [searchParams]);
+
   const inputName: string = searchParams.get("name") || "";
   const day: string = searchParams.get("day") || "";
   const month: string = searchParams.get("month") || "";
@@ -42,7 +49,7 @@ export const FbChatLanding: React.FC = () => {
   const childMonth: string = searchParams.get("monthChild") || "";
   const childYear: string = searchParams.get("yearChild") || "";
   const hasChildren: string = searchParams.get("hasChildren") || "";
-  const pixelId: string = searchParams.get("pixelId") || "";
+  // const pixelId: string = searchParams.get("pixelId") || "";
   const futureChild: string = searchParams.get("futureChild") || "";
   const futureChildName: string = searchParams.get("futureChildName") || "";
 
@@ -61,6 +68,7 @@ export const FbChatLanding: React.FC = () => {
   const isChildBithdateSet =
     childDay.length > 0 && childMonth.length > 0 && childYear.length > 0;
   const { state, dispatch } = useContext(StateContext);
+  const { state: quizState, dispatch: quizDispatch } = useContext(QuizContext);
 
   const fourthQuestion: Array<string> = i18n.t("fourthQuestion", {
     returnObjects: true,
@@ -98,16 +106,6 @@ export const FbChatLanding: React.FC = () => {
       page: "https://ro.destiny4you.com/#/",
       title: "ro.destiny4you.com/#/",
     });
-  }, []);
-
-  useEffect(() => {
-    const advancedMatching = { em: "some@email.com" };
-    const options = {
-      autoConfig: true,
-      debug: true,
-    };
-    ReactPixel.init(pixelId, advancedMatching as AdvancedMatching, options);
-    ReactPixel.pageView();
   }, []);
 
   useEffect(() => {
@@ -157,16 +155,50 @@ export const FbChatLanding: React.FC = () => {
     }
   }, [finalPrompt]);
 
-  function handleInput(value: string, fieldName: string) {
-    if (!value) {
-      params.delete(fieldName);
-    } else {
-      params.set(fieldName, value);
-    }
+  // function handleInput(value: string, fieldName: string) {
+  //   if (!value) {
+  //     params.delete(fieldName);
+  //   } else {
+  //     params.set(fieldName, value);
+  //   }
 
-    setSearchParams(params);
-  }
+  //   setSearchParams(params);
+  // }
 
+  // const handleInput = useCallback(debounce((value: string, fieldName: string) => {
+  //   if (!value) {
+  //     params.delete(fieldName);
+  //   } else {
+  //     params.set(fieldName, value);
+  //   }
+
+  //   setSearchParams(params);
+  // }, 1000), []);
+
+  // function handleInput2(value: string, fieldName: string) {
+  //   handleInput(value, fieldName)
+  // }
+
+  // const handleInput = useCallback((value: string, fieldName: string) => {
+  //   setSearchParams((prevParams) => {
+  //     if (!value) {
+  //       prevParams.delete(fieldName);
+  //     } else {
+  //       prevParams.set(fieldName, value);
+  //     }
+
+  //     return prevParams;
+  //   })
+  // }, []);
+
+  const handleInput = (value: string, fieldName: any) => {
+    // dispatch({ type: ACTIONS.SET_NAME, payload: value });
+    quizDispatch({ type: QUIZ_ACTIONS.SET_FIELD, fieldName: fieldName, payload: value })
+  };
+
+  // console.log(isPartnerBithdateSet, 'trigger for next question')
+  console.log(quizState, 'quiiiizzz state fbchatlanding');
+  
   function handleKeyDown(
     event: React.KeyboardEvent<HTMLInputElement>,
     filedName?: string
@@ -217,6 +249,8 @@ export const FbChatLanding: React.FC = () => {
   }
 
   function handleSelectParam(value: SingleValue<SelectOption>, param: string) {
+    // console.log(value, param,'value handle select');
+    
     if (value?.value === param) {
       params.delete(param);
     } else {
@@ -247,11 +281,12 @@ export const FbChatLanding: React.FC = () => {
     if (fieldName === "futureChild") {
       setQuestion7(true);
     }
-    handleInput(data, fieldName);
+    handleInput(data, fieldName as keyof InputFileds);
   }
 
   return (
     <div>
+      {/* <Stripe /> */}
       <FbAll text={i18n.t('intro')} />
      
       {question1 &&
@@ -260,7 +295,7 @@ export const FbChatLanding: React.FC = () => {
           child={<NameInput
             onChange={(event) => handleInput(event.target.value, 'name')}
             onKeyDown={handleKeyDown}
-            inputErrorText={i18n.t('Input your name and')}
+            inputErrorText={i18n.t('Type your name and')}
             field='name'
             showEnter={question2}
           />}
@@ -282,7 +317,7 @@ export const FbChatLanding: React.FC = () => {
               onChange={handleInput}
               onKeyDown={handleKeyDown}
               onClick={handleClick}
-              inputErrorText={i18n.t("Input your city and")}
+              inputErrorText={i18n.t("Type your city and")}
               showEnter={question4}
             />
           }
@@ -349,7 +384,7 @@ export const FbChatLanding: React.FC = () => {
           }
         />
       )}
-
+{/* Here I need a full years list */}
       {question6 && hasChildren === "yes" && (
         <FbAll
           text={i18n.t("questionSixIfHasChild")}
@@ -358,6 +393,7 @@ export const FbChatLanding: React.FC = () => {
               onChange={(event: SingleValue<SelectOption>) =>
                 handleSelectParam(event, `${event?.name}Child`)
               }
+              takeKidsYears={true}
             />
           }
         />
@@ -404,7 +440,7 @@ export const FbChatLanding: React.FC = () => {
                 handleInput(event.target.value, "futureChildName")
               }
               onKeyDown={handleKeyDown}
-              inputErrorText={i18n.t("Input child name and")}
+              inputErrorText={i18n.t("Type child name and")}
               field="futureChildName"
               showEnter={finalPrompt}
               placeholder="Michelle"
@@ -413,7 +449,7 @@ export const FbChatLanding: React.FC = () => {
         />
       )}
 
-      {isLoading && <FbAnimation />}
+      {isLoading && <FbAnimation text="BabyStar AI is forming forecast. It can take some time"/>}
 
       {responseData.length > 0 && (
         <>

@@ -5,20 +5,38 @@ import { HiVideoCamera } from "react-icons/hi";
 import { IoIosInformationCircle } from "react-icons/io";
 import classNames from 'classnames';
 import { StateContext } from "../../context/AppContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { FacebookPixel2 } from "../FacebookPixel/FacebookPixel";
+import { useGetContextState } from "../../helpers/utils";
+import React from "react";
+
+let count = 0;
 
 export const Header = () => {
-  const { state } = useContext(StateContext);
+  const [test, setTest] = useState<boolean>();
+  // const { isOnline } = useContext(StateContext).state;
 
+
+  useEffect(() => {
+    // const { isOnline } = useContext(StateContext).state;
+    // setTest(isOnline);
+  }, [])
+
+  // console.log(test, 'testtest');
+  // const ddd = useGetContextState();
+  // console.log(ddd, 'dddd in header');
+
+  console.log('header render', count++);
   return (
     <div className="header">
-     <div>
+      <FacebookPixel2 />
+      <div>
         <FaArrowLeft color="#6495ED" size={24} />
       </div>
       <div style={{ marginLeft: 10 }}>
         <div className="custom-icon" style={{ position: 'relative' }}>
           <div className={classNames("red-circle-box", {
-              "phantom": ! state.isOnline
+            // "phantom": ! state.isOnline
           })}>
             <div className="red-circle" />
           </div>
@@ -38,4 +56,4 @@ export const Header = () => {
       </div>
     </div>
   )
-}
+};

@@ -22,7 +22,7 @@
   ],
   "questionEightFutureName" : "Ai deja țesut vise în jurul numelui viitorului tău copil? Dacă da, șoptește-l în regatul nostru cerești.",
   "BabyStar AI": "BabyStar AI",
-  "Input your name and": "Introduceți numele și",
+  "Type your name and": "Tastați numele și",
   "BabyStar AI is typing": "BabyStar AI scrie",
   "day" : "ziua",
   "month": "luna",
@@ -39,8 +39,9 @@
   "October": "Octombrie", 
   "November": "Noiembrie", 
   "December": "Decembrie",
-  "Input your city and": "Introduceți orașul și",
-  "Input child name and": "Introduceți numele copilului și",
+  "Type your city and": "Tastați orașul și",
+  "Type child name and": "Tastați numele și",
   "Read whole forecast": "Citește întreaga previziune.",
-  "press Enter": "apăsați Enter"
+  "press Enter": "apăsați Enter",
+  "BabyStar AI is forming forecast. It can take some time": "BabyStar AI creează prognoza. Poate dura puțin timp."
 }

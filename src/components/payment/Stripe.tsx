@@ -6,10 +6,13 @@ import "./stripe.scss";
 import { client } from "../../helpers/utils";
 import ReactGA from 'react-ga4';
 import i18n from '../../helpers/i18n';
+import LanguageDetector from "i18next-browser-languagedetector";
 
-const stripePromise = loadStripe("");
+const stripePromise = loadStripe("pk_live_51OP1pEIDi1lKDmgLtS21cdqmc6EMw2M5iFaVXV8mk970Nln9y34U4SgzYFu1zQVxyvbDc5QvCe3u8S4gma16bGM600EuOW1dm4");
 
 export const Stripe: React.FC = () => {
+  let currentLang = new LanguageDetector().detect() as string;
+
   const [clientSecret, setClientSecret] = useState("");
 
   const [showPayForm, setShowPayForm] = useState(false);
@@ -22,6 +25,10 @@ export const Stripe: React.FC = () => {
       label: `PAY FORM`,
     });
   }
+
+  const price = currentLang === 'en'
+    ? '2$ dollars'
+    : '2€ euro'
 
   useEffect(() => {
     client.post("/create-payment-intent", {
@@ -53,12 +60,14 @@ export const Stripe: React.FC = () => {
       <button onClick={handlePrepaidClick}>{i18n.t('Read whole forecast')}</button>
       {showPayForm && (
         <div className="custom-font">
-          <div style={{color: 'black'}} className="center-div">2$ dollars</div>
+          <div style={{ color: 'black' }} className="center-div">{price}</div>
           {clientSecret && (
             <div className="center-div">
               <Elements options={options as any} stripe={stripePromise}>
-              <CheckoutForm />
+                <CheckoutForm />
+                
             </Elements>
+            
             </div>
           )}
         </div>
