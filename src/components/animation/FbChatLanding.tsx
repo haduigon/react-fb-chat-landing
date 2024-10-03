@@ -1,5 +1,5 @@
 import { FbAll, FbAnimation } from "./FbAnimation";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { NameInput } from "../input/NameInput";
 import { useSearchParams } from "react-router-dom";
 import { CheckboxDouble } from "../checkbox/CustomCheckBoxes";
@@ -16,15 +16,10 @@ import { TbMoodBoy } from "react-icons/tb";
 import { CgGirl } from "react-icons/cg";
 import { QuizContext, StateContext } from "../../context/AppContext";
 import { QUIZ_ACTIONS, ACTIONS } from "../../helpers/enums";
-// import ReactPixel, { AdvancedMatching } from "react-facebook-pixel";
 import ReactGA from "react-ga4";
 import i18n from "../../helpers/i18n";
 import LanguageDetector from "i18next-browser-languagedetector";
-import debounce from "lodash.debounce";
 import { InputFileds } from "../../helpers/types";
-// import CheckoutForm from "../payment/CheckoutForm";
-// import { Stripe } from "../payment/Stripe";
-// import { InputFileds } from "../../helpers/types";
 
 type SelectOption = {
   value: string | number | null;
@@ -33,25 +28,26 @@ type SelectOption = {
 };
 
 export const FbChatLanding: React.FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  // const params = new URLSearchParams(searchParams);
-    const params = useMemo(() => new URLSearchParams(searchParams), [searchParams]);
+  const [searchParams] = useSearchParams();
 
-  const inputName: string = searchParams.get("name") || "";
-  const day: string = searchParams.get("day") || "";
-  const month: string = searchParams.get("month") || "";
-  const year: string = searchParams.get("year") || "";
-  const isMarried: string = searchParams.get("isMarried") || "";
-  const partnerDay: string = searchParams.get("dayPartner") || "";
-  const partnerMonth: string = searchParams.get("monthPartner") || "";
-  const partnerYear: string = searchParams.get("yearPartner") || "";
-  const childDay: string = searchParams.get("dayChild") || "";
-  const childMonth: string = searchParams.get("monthChild") || "";
-  const childYear: string = searchParams.get("yearChild") || "";
-  const hasChildren: string = searchParams.get("hasChildren") || "";
-  // const pixelId: string = searchParams.get("pixelId") || "";
-  const futureChild: string = searchParams.get("futureChild") || "";
-  const futureChildName: string = searchParams.get("futureChildName") || "";
+  const params = useMemo(() => new URLSearchParams(searchParams), [searchParams]);
+  const { state, dispatch } = useContext(StateContext);
+  const { state: quizState, dispatch: quizDispatch } = useContext(QuizContext);
+
+  const inputName: string = quizState.name;
+  const day: string = quizState.day;
+  const month: string = quizState.month;
+  const year: string = quizState.year;
+  const isMarried: string = quizState.isMarried;
+  const partnerDay: string = quizState.dayPartner;
+  const partnerMonth: string = quizState.monthPartner;
+  const partnerYear: string = quizState.yearPartner;
+  const childDay: string = quizState.dayChild || "";
+  const childMonth: string = quizState.monthChild || "";
+  const childYear: string = quizState.yearChild || "";
+  const hasChildren: string = quizState.hasChildren || "";
+  const futureChild: string = quizState.futureChild || "";
+  const futureChildName: string = quizState.futureChildName || "";
 
   const [question2, setQuestion2] = useState(false);
   const [question4, setQuestion4] = useState(false);
@@ -67,8 +63,7 @@ export const FbChatLanding: React.FC = () => {
     partnerDay.length > 0 && partnerMonth.length > 0 && partnerYear.length > 0;
   const isChildBithdateSet =
     childDay.length > 0 && childMonth.length > 0 && childYear.length > 0;
-  const { state, dispatch } = useContext(StateContext);
-  const { state: quizState, dispatch: quizDispatch } = useContext(QuizContext);
+  
 
   const fourthQuestion: Array<string> = i18n.t("fourthQuestion", {
     returnObjects: true,
@@ -81,22 +76,6 @@ export const FbChatLanding: React.FC = () => {
   });
 
   useEffect(() => {
-    params.delete("day");
-    params.delete("month");
-    params.delete("year");
-    params.delete("name");
-    params.delete("city");
-    params.delete("isMarried");
-    params.delete("hasChildren");
-    params.delete("dayPartner");
-    params.delete("monthPartner");
-    params.delete("yearPartner");
-    params.delete("dayChild");
-    params.delete("monthChild");
-    params.delete("yearChild");
-    params.delete("futureChild");
-    params.delete("futureChildName");
-    setSearchParams(params);
     setTimeout(() => {
       setQuestion1(true);
     }, 8000);
@@ -155,49 +134,9 @@ export const FbChatLanding: React.FC = () => {
     }
   }, [finalPrompt]);
 
-  // function handleInput(value: string, fieldName: string) {
-  //   if (!value) {
-  //     params.delete(fieldName);
-  //   } else {
-  //     params.set(fieldName, value);
-  //   }
-
-  //   setSearchParams(params);
-  // }
-
-  // const handleInput = useCallback(debounce((value: string, fieldName: string) => {
-  //   if (!value) {
-  //     params.delete(fieldName);
-  //   } else {
-  //     params.set(fieldName, value);
-  //   }
-
-  //   setSearchParams(params);
-  // }, 1000), []);
-
-  // function handleInput2(value: string, fieldName: string) {
-  //   handleInput(value, fieldName)
-  // }
-
-  // const handleInput = useCallback((value: string, fieldName: string) => {
-  //   setSearchParams((prevParams) => {
-  //     if (!value) {
-  //       prevParams.delete(fieldName);
-  //     } else {
-  //       prevParams.set(fieldName, value);
-  //     }
-
-  //     return prevParams;
-  //   })
-  // }, []);
-
   const handleInput = (value: string, fieldName: any) => {
-    // dispatch({ type: ACTIONS.SET_NAME, payload: value });
-    quizDispatch({ type: QUIZ_ACTIONS.SET_FIELD, fieldName: fieldName, payload: value })
+    quizDispatch({ type: QUIZ_ACTIONS.SET_FIELD, fieldName: fieldName, payload: value });
   };
-
-  // console.log(isPartnerBithdateSet, 'trigger for next question')
-  console.log(quizState, 'quiiiizzz state fbchatlanding');
   
   function handleKeyDown(
     event: React.KeyboardEvent<HTMLInputElement>,
@@ -248,21 +187,14 @@ export const FbChatLanding: React.FC = () => {
     setQuestion4(true);
   }
 
-  function handleSelectParam(value: SingleValue<SelectOption>, param: string) {
-    // console.log(value, param,'value handle select');
-    
-    if (value?.value === param) {
-      params.delete(param);
-    } else {
-      params.set(param, String(value?.value));
+  function handleSelectParam(value: SingleValue<SelectOption>, param: any) {
+
+    quizDispatch({ type: QUIZ_ACTIONS.SET_FIELD, fieldName: param, payload: String(value?.value) });
       ReactGA.event({
         category: `${param}`,
         action: `${param} : ${value}`,
         label: `${param}`,
       });
-    }
-
-    setSearchParams(params);
   }
 
   function handleChange(data: string, fieldName: string) {
@@ -284,9 +216,10 @@ export const FbChatLanding: React.FC = () => {
     handleInput(data, fieldName as keyof InputFileds);
   }
 
+  console.log(quizState, isPartnerBithdateSet, partnerDay.length, partnerMonth.length, partnerYear.length, 'isPartnerBithdateSet');
+  
   return (
     <div>
-      {/* <Stripe /> */}
       <FbAll text={i18n.t('intro')} />
      
       {question1 &&

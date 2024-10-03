@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useContext, useEffect, useRef } from 'react';
 import './CommonInputStyles.scss';
 import i18n from '../../helpers/i18n';
 import React from 'react';
+import { QuizContext } from '../../context/AppContext';
 
 type Props = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
@@ -23,8 +23,9 @@ export const NameInput: React.FC<Props> = React.memo(({
   showEnter,
   placeholder="Lilu Dallas",
 }) => {
-  const [searchParams] = useSearchParams();
-  const inputValue: string  = searchParams.get(field as any) || '';
+  const { state: quizState } = useContext(QuizContext);
+
+  const inputValue: string = quizState.name || '';
   const myRef = useRef<null | HTMLInputElement>(null);
 
   useEffect(() => {
@@ -35,7 +36,6 @@ export const NameInput: React.FC<Props> = React.memo(({
 
   console.log('name input render', count++);
   
-
   return (
 
     <div className='input-container'>

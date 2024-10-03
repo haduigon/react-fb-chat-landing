@@ -89,7 +89,7 @@ export const FbAll: React.FC<Props> = ({ text, child, cover }) => {
   const myFinalRef = useRef<null | HTMLDivElement>(null);
   const { dispatch } = useContext(StateContext);
   const [searchParams] = useSearchParams();
-  const name = searchParams.get('name');
+  // const name = searchParams.get('name');
 
   useEffect(() => {
     if (myFinalRef.current) {

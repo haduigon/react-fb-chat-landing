@@ -64,8 +64,7 @@ export const Stripe: React.FC = () => {
           {clientSecret && (
             <div className="center-div">
               <Elements options={options as any} stripe={stripePromise}>
-                <CheckoutForm />
-                
+                <CheckoutForm />                
             </Elements>
             
             </div>

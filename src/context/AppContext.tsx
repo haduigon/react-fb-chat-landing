@@ -5,12 +5,10 @@ import { InputFileds } from '../helpers/types';
 
 type Action = { type: ACTIONS.SET_FORECAST, payload: string }
 | { type: ACTIONS.SET_ONLINE, payload: boolean}
-// | { type: ACTIONS.SET_NAME, payload: string}
 
 interface Data {
   forecast: string,
   isOnline: boolean,
-  // name: string,
 }
 
 function reducer(state: Data, action: Action) {
@@ -25,11 +23,6 @@ function reducer(state: Data, action: Action) {
         ...state,
         isOnline: action.payload,
       }
-    // case ACTIONS.SET_NAME: 
-    //   return {
-    //     ...state,
-    //     name: action.payload,
-    //   }
   }
 }
 
@@ -42,7 +35,6 @@ const initialState: State = {
   state: {
     forecast: '',
     isOnline: true,
-    // name: '',
   },
   dispatch: () => { }
 };
@@ -69,12 +61,12 @@ const quizInitialState: QuizState = {
   month: '',
   year: '',
   isMarried: '',
-  partnerDay: '',
-  partnerMonth: '',
-  partnerYear: '',
-  childDay: '',
-  childMonth: '',
-  childYear: '',
+  dayPartner: '',
+  monthPartner: '',
+  yearPartner: '',
+  dayChild: '',
+  monthChild: '',
+  yearChild: '',
   hasChildren: '',
   futureChild: '',
   futureChildName: '',

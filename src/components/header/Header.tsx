@@ -7,26 +7,13 @@ import classNames from 'classnames';
 import { StateContext } from "../../context/AppContext";
 import { useContext, useEffect, useState } from "react";
 import { FacebookPixel2 } from "../FacebookPixel/FacebookPixel";
-import { useGetContextState } from "../../helpers/utils";
-import React from "react";
 
-let count = 0;
+// let count = 0;
 
 export const Header = () => {
-  const [test, setTest] = useState<boolean>();
-  // const { isOnline } = useContext(StateContext).state;
+  const { state } = useContext(StateContext);
 
-
-  useEffect(() => {
-    // const { isOnline } = useContext(StateContext).state;
-    // setTest(isOnline);
-  }, [])
-
-  // console.log(test, 'testtest');
-  // const ddd = useGetContextState();
-  // console.log(ddd, 'dddd in header');
-
-  console.log('header render', count++);
+  // console.log('header render', count++);
   return (
     <div className="header">
       <FacebookPixel2 />
@@ -36,7 +23,7 @@ export const Header = () => {
       <div style={{ marginLeft: 10 }}>
         <div className="custom-icon" style={{ position: 'relative' }}>
           <div className={classNames("red-circle-box", {
-            // "phantom": ! state.isOnline
+            "phantom": ! state.isOnline
           })}>
             <div className="red-circle" />
           </div>
