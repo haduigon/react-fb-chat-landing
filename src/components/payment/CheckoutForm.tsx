@@ -19,7 +19,7 @@ export default function CheckoutForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, _setSearchParams] = useSearchParams();
   const pixelId: string = searchParams.get('pixelId') || '';
-  const { state: quizState } = useContext(QuizContext);
+  const { state: quizState} = useContext(QuizContext);
 
   const name: string = quizState.name;
 
@@ -79,7 +79,7 @@ export default function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `https://ro.destiny4you.com/#/download`,
+        return_url: `https://ro.destiny4you.com/#/download?name=${name}`,
       },
     });
 
