@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {
   PaymentElement,
   useStripe,
@@ -9,6 +9,7 @@ import ReactGA from 'react-ga4';
 import ReactPixel from 'react-facebook-pixel';
 import i18n from '../../helpers/i18n';
 import pwdStripe from '../../assets/icons/pwdStripe.png';
+import { QuizContext } from "../../context/AppContext";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -18,8 +19,9 @@ export default function CheckoutForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, _setSearchParams] = useSearchParams();
   const pixelId: string = searchParams.get('pixelId') || '';
+  const { state: quizState } = useContext(QuizContext);
 
-  const name: string = searchParams.get('name') || '';
+  const name: string = quizState.name;
 
   useEffect(() => {
     ReactGA.initialize("G-W995KS9W3X");
@@ -77,7 +79,7 @@ export default function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `https://ro.destiny4you.com/#/download?name=${name}&pixelId=${pixelId}`,
+        return_url: `https://ro.destiny4you.com/#/download`,
       },
     });
 

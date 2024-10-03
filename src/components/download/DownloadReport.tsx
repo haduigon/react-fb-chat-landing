@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from 'react';
 import './DownloadReport.scss';
-import { StateContext } from '../../context/AppContext';
+import { QuizContext, StateContext } from '../../context/AppContext';
 import download from 'js-file-download';
 import { client } from '../../helpers/utils';
 import { GiSagittarius } from "react-icons/gi";
@@ -10,7 +10,8 @@ import ReactPixel, { AdvancedMatching } from 'react-facebook-pixel';
 export const DownloadReport = () => {
   const [searchParams] = useSearchParams();
 
-  const name = searchParams.get('name')
+  const { state: quizState } = useContext(QuizContext);
+  const name = quizState.name;
   const sagittarius = <GiSagittarius size={30} />
 
   const { state } = useContext(StateContext);
@@ -19,10 +20,9 @@ export const DownloadReport = () => {
   const fileName = `${name}2.pdf`;
   const myRef = useRef<null | HTMLDivElement>(null);
 
-  const pixelId: string = searchParams.get('pixelId') || '';
-
   async function getFile() {
     const response = await downloadFile();
+    
     const content = response.headers['content-type'];
     download(response.data, fileName, content);
   }
@@ -33,7 +33,6 @@ export const DownloadReport = () => {
       autoConfig: true,
       debug: true,
     };
-    ReactPixel.init(pixelId, advancedMatching as AdvancedMatching, options);
     ReactPixel.track('Purchase', { currency: "USD", value: 2.00 });
 
     if (myRef.current) {
